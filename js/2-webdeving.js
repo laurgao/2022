@@ -350,7 +350,22 @@ function slide2() {
 
                     // change button to "ok i'll consider it", following the format of prev button changes. copilot, do it:
                     setTimeout(() => button.textContent = "ok i'll consider it", x+y+z+w+4*br)
-                    button.onclick = () => newScreen(() => slideFrench());
+                    button.onclick = () => {
+                        myDiv.innerHTML = "";
+                        dadDiv.innerHTML = "";
+                        descrip.innerHTML = "";
+                        button.textContent = "";
+                        Tween.get(dad, { loop: false })
+                        .to({x: ww}, t, createjs.Ease.linear)
+
+                        setTimeout(() => {
+                            button.textContent = "a few weeks later..."
+                            button.onclick = () => newScreen(() => slideFranticSchedule());
+                        }, t + br);
+                        
+                    }
+
+                    
                     
                 }
             }
