@@ -178,10 +178,8 @@ function scenePrior() {
         const x = document.getElementById("x")
         console.log(b.getBoundingClientRect().top)
         if(b.getBoundingClientRect().top + b.getBoundingClientRect().height / 2 < window.innerHeight / 2) {
-            console.log("x");
             x.style.zIndex = 0;
         } else {
-            console.log("y");
             x.style.zIndex = -3;
         }
     })

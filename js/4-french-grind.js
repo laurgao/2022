@@ -8,41 +8,6 @@ function slideFrench() {
     // sceneVideo(sceneSettings);
 }
 
-function setupMeAtDesk() {
-    const scene = new PIXI.Container();
-    const bg = PIXI.Sprite.from("images/scene-1-bg.png");
-    const me = PIXI.Sprite.from("images/scene-1-me.png");
-    const meDropped = PIXI.Sprite.from("images/scene-1-me-head-down.png");
-    // add larm and rarm
-    const larm = PIXI.Sprite.from("images/scene-1-larm.png");
-    const rarm = PIXI.Sprite.from("images/scene-1-rarm.png");
-    scene.addChild(bg)
-    scene.addChild(me)
-    scene.addChild(larm)
-    scene.addChild(rarm)
-
-    const w = app.screen.width * 0.5625 < app.screen.height ? app.screen.height / 0.5625 : app.screen.width;
-    const ww = w * 0.7;
-    const picturesY = app.screen.height - ww * 0.5625;
-
-    me.width = ww;
-    me.height = ww * 0.5625;
-    meDropped.width = ww;
-    meDropped.height = ww * 0.5625;
-    bg.width = ww;
-    bg.height = ww * 0.5625;
-    larm.width = ww;
-    rarm.width = ww;
-    larm.height = ww * 0.5625;
-    rarm.height = ww * 0.5625;
-
-    // scene.w = ww;
-    // scene.h = ww * 9/16
-    scene.y = picturesY
-
-    app.stage.addChild(scene)
-}
-
 
 function sceneDilemma() {
     setupMeAtDesk();
@@ -268,7 +233,8 @@ function sceneRecap() {
 
         You fall asleep listening to <i>Le precepteur</i>. A stream of unrecognizeable sounds; once in a while you catch a "bonjour."
 
-        French makes you want to bonk your head against the wall. Unlike web development, there are no signs of progress. A week later, you aren't sure if your skills have improved.`)}
+        French makes you want to bonk your head against the wall. Unlike web development, there are no signs of progress. A week later, you aren't sure if your skills have improved.
+        `)}
         
         <button onclick="clearRoot();a();">keep going</button>
         </div>
@@ -361,11 +327,6 @@ function d1() {
     `
 }
 
-function addBr(text) {
-    return text.replace(`
-`, "<br/><br/>")
-}
-
 function d2() {
     root.innerHTML = `
     <div style="${meTableTextStyles}">
@@ -373,7 +334,8 @@ function d2() {
         
         as you try to doze off, your mind drifts back. You were so excited to go to TOPS because you thought you can be part of a student body that could create such professional production. You watched last year's livestream dreaming about how you'd edit it, when it was your grade's turn. You wouldn't be able to live with yourself if you didn't try.
 
-        Gloria told you how she basically just decided to take charge of stage operations. You think of a quote:`)}
+        Gloria told you how she basically just decided to take charge of stage operations. You think of a quote:
+        `)}
 
         <blockquote>
         There are two kinds of people, those who do the work and those who take the credit. Try to be in the first group; there is less competition there.
@@ -381,7 +343,8 @@ function d2() {
         ⁠—Indira Gandhi
         </blockquote>
 
-        ${addBr(`You decide that you'll just take charge of the filming and production of the recording.`)}
+        ${addBr(`
+        You decide that you'll just take charge of the filming and production of the recording.`)}
 
         <button onclick="clearRoot();e();">let's get started</button>
 
@@ -407,62 +370,4 @@ function e() {
 
     </div>
     `
-}
-
-function insertDilemma(b1Options, b2Options, title="<h1>Quoi faire? (What do you do?)</h1>")  {
-    const popupStyles = "display: absolute; visibility: hidden; max-width: 20rem; background-color: black; color: white; padding: 2rem; border-radius: 1rem;"
-//     // <div class="flex justify-center items-center">
-
-    root.innerHTML = `
-        <div style="padding: 2rem; text-align: center">
-            ${title}
-            <div class="flex justify-center items-center" id="button-container"></div>
-            <div class="flex justify-center items-center">
-                <div id="descrip1" style="${popupStyles}">
-                    
-                </div>
-                <div id="descrip2" style="${popupStyles}">
-                
-                </div>
-            </div>
-        </div>
-    `
-    
-    const b1 = document.createElement("button")
-    const b2 = document.createElement("button")
-    b1.textContent = b1Options.buttonText
-    b2.textContent = b2Options.buttonText
-    b1.onclick = b1Options.nextScene
-    b2.onclick = b2Options.nextScene
-    b1.onmouseover = showFr
-    b1.onmouseleave = hideFr
-    b2.onmouseover = showCode
-    b2.onmouseleave = hideCode
-
-    const bContainer = document.querySelector("#button-container")
-    bContainer.appendChild(b1)
-    bContainer.appendChild(b2)
-
-    const descrip1 = document.querySelector("#descrip1")
-    descrip1.innerHTML = b1Options.descrip
-    const descrip2 = document.querySelector("#descrip2") 
-    descrip2.innerHTML = b2Options.descrip
-
-    function showFr() {
-        descrip1.style.visibility = "visible"
-    }
-
-
-    function hideFr() {
-        descrip1.style.visibility = "hidden"
-    }
-
-    function showCode() {
-        descrip2.style.visibility = "visible"
-    }
-
-
-    function hideCode() {
-        descrip2.style.visibility = "hidden"
-    }
 }

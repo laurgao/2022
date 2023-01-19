@@ -23,8 +23,7 @@ function initialize() {
     }
 }
 
-function createLauraCircle () {
-    let radius = 300;
+function createLauraCircle (radius=300) {
     let numLauras = 12;
     for (let i = 0; i < 5; i++) {
         const curvedText = document.createElement('div');
@@ -92,9 +91,10 @@ const newScreen = (newScreenFn) => {
 
 
 function widthError() {
+    console.log("width error")
     const p = document.createElement('p');
     p.textContent = 'This site is not optimized for mobile devices. Please use a desktop or laptop computer.<br/><br/>To complain about this, bother me at gaolauro AT gmail DOT com or make an issue on github.';
-    root.prepend(p);
+    root.appendChild(p);
 }
 
 
