@@ -1,0 +1,116 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* transition: cubic-bezier(1, 0, 0, 1) 0.5s all; */
+}
+
+@font-face {
+	font-family: 'FuturaHandwritten';
+	src: url(../fonts/FuturaHandwritten.ttf) format('truetype');
+	font-weight: 400;
+}
+
+body {
+    font-family: 'FuturaHandwritten', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    background-color: #f5f5f4;
+}
+
+p {
+    font: inherit;
+}
+
+button {
+    font: inherit;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+    overflow: visible;
+    background-color: transparent;
+}
+
+button:not(.small):hover {
+    background-image: url(images/scribble-medium.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+
+button.small:hover {
+    background-image: url(images/scribble-small.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+blockquote {
+    color: #78716c;
+    display: block;
+    border-left: 4px solid #78716c;
+    padding-left: 2rem;
+    text-align: left;
+}
+
+/* sorry cant live without */
+.absolute {
+    position: absolute;
+}
+
+.flex {
+    display: flex;
+}
+
+.w-screen {
+    width: 100vw;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.text-stone-500 {
+    color: #78716c;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    /* fill in w color. */
+}
