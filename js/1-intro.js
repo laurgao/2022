@@ -24,10 +24,10 @@ function initialize() {
 }
 
 function createLauraCircle (radius=300) {
-    let numLauras = 12;
+    let numLauras = radius/50;
     for (let i = 0; i < 5; i++) {
         const curvedText = document.createElement('div');
-        const text = "Laura Gao ".repeat(numLauras);
+        const text = "2022 annual review ".repeat(numLauras);
         curvedText.innerHTML = text;
         curvedText.className = "absolute flex w-screen h-screen items-center justify-center";
         curvedText.style.overflow = "hidden"
@@ -44,7 +44,7 @@ function createLauraCircle (radius=300) {
         });
         curvedText.innerHTML = html;
         radius += 50;
-        numLauras +=2;
+        numLauras +=1;
     }
 }
 
@@ -53,9 +53,11 @@ function slide0() {
 // <p style="opacity: 50%; margin-bottom: 2rem;">By Laura Gao</p>
     root.innerHTML = `
         <div style="position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1;">
-            <h1 style="font-size: 3.3rem; line-height: 1">ANNUAL</h1>    
-            <h1 style="font-size: 8rem; line-height: 1">2022</h1>    
-            <h1 style="font-size: 3.7rem; line-height: 1; margin-bottom: 4rem;">REVIEW</h1>    
+            <h1 style="font-size: 3.3rem; line-height: 1">the</h1>    
+            <h1 style="font-size: 8rem; line-height: 1">sellout's</h1>    
+            <h1 style="font-size: 5rem; line-height: 1; margin-bottom: 2rem;">dilemma</h1>
+
+            <p class="text-stone-500" style="margin-bottom: 4rem;">my 2022, in a game &#8226; by laura gao</p>
         
             <button
                 onClick="clearRoot();slide1();"
@@ -65,7 +67,7 @@ function slide0() {
         </div>
     `
 
-    createLauraCircle();
+    createLauraCircle(350);
 
     // const button = document.createElement('button');
     // button.innerHTML = "Play";

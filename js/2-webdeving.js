@@ -69,10 +69,17 @@ function slide2() {
     // add larm and rarm
     const larm = PIXI.Sprite.from("images/scene-1-larm.png");
     const rarm = PIXI.Sprite.from("images/scene-1-rarm.png");
+    const journalGraph = PIXI.Sprite.from("images/commitment-graph.png");
 
-    const w = app.screen.width * 0.5625 < app.screen.height ? app.screen.height / 0.5625 : app.screen.width;
+    const w = app.screen.width * 0.5625 > app.screen.height ? app.screen.height / 0.5625 : app.screen.width;
     const ww = w * 0.7;
     picturesY = app.screen.height - ww * 0.5625;
+
+    journalGraph.width = ww * 0.75;
+    journalGraph.height = ww * 0.5625 * 0.75;
+    journalGraph.x = ww * 0.6;
+    journalGraph.y = app.screen.height - ww * 0.5625 //* 0.75
+    journalGraph.alpha = 0.6
 
     me.width = ww;
     me.height = ww * 0.5625;
@@ -182,8 +189,8 @@ function slide2() {
         // create b utton saying "open door" html element
         const button = document.createElement('button');
         button.textContent = "open door";
-        // on click, call opendoor function
-        button.onclick = () => {clearRoot();openDoor();}
+        // on click, call opendoor function   
+        button.onclick = () => {clearRoot();app.stage.removeChild(journalGraph);openDoor();}
         button.style.position = "absolute";
         button.style.bottom = "2rem";
         button.style.right = "2rem";
@@ -427,10 +434,19 @@ function slide2() {
         typing.pause();
         const hitTable = new Audio("sound/hit-table.mp3");
         hitTable.play();
+        app.stage.addChild(journalGraph);
         div.innerHTML = `
             In a journal entry, you write:
+            <br/><br/>
+            <blockquote>
+                I feel a thirst for a big project. I tried more things in webdev in the past 5 days than all of previous scratchpad combined, and I'm floating. I'm alive. If I'm not using new React.js hooks and MongoDB $selectors and NumPy methods, I'm dying.
+                <br/><br/>
+                I wonder how it feels to be Samson, to have comitted months building out his notetaking/blogging app, Postulate. David Perell has been writing for 5 years. Only with sticking to one thing for a lot of time can you escape the chains of mediocrity and tap into exponential growth.
+            </blockquote>
         `
-        setTimeout(() => knock(), 1000); // guess how long it takes to read?
+        setTimeout(() => {
+            knock();
+        }, 20000); // guess how long it takes to read?
     }
 
 }
