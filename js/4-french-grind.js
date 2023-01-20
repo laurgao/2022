@@ -71,8 +71,6 @@ function hideCode() {
     x.style.visibility = "hidden"
 }
 
-const meTableTextStyles = "padding: 2rem; text-align: right; max-width: 56rem; float: right"
-
 const sceneCode = () => {
     root.innerHTML = `
         <div style="${meTableTextStyles}">
@@ -193,12 +191,12 @@ function sceneVideo() {
     document.body.style.backgroundColor = "white"
 
     root.innerHTML = `
-    <div style="text-align: center; padding: 2rem; margin: 0 auto; justify-content: space-between;" class="flex flex-col h-screen">
+    <div style="text-align: center; padding: 2rem; margin: 0 auto; justify-content: space-evenly;" class="flex flex-col h-screen items-center">
     <div>
         <h1>Watch the French video</h1>
         <p>A French person would not binge physics videos in English.</p>
     </div>
-    <div>
+    <div class="flex flex-col">
         <img src="images/video-3b1b.png" width=${w} height=${h} style="margin-bottom: 2rem;" />
         <img src="images/video-fr.png" width=${w} height=${h} style="margin-bottom: 2rem; cursor: pointer" onclick="newScreen(sceneSettings);" />
         <img src="images/video-me.png" width=${w} height=${h} />

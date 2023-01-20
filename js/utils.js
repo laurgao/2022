@@ -138,3 +138,5 @@ function insertDilemma(b1Options, b2Options, title="<h1>Quoi faire? (What do you
         descrip2.style.visibility = "hidden"
     }
 }
+
+const meTableTextStyles = "padding: 2rem; text-align: right; max-width: 50vw; float: right"

@@ -25,8 +25,7 @@ function slideFranticSchedule() {
             newW = franticSchedule.width * scaleFactor;
             franticSchedule.height = app.screen.height;
             franticSchedule.width = newW;
-            franticSchedule.x = 0;
-            franticSchedule.y = 0;
+            scene.x = app.screen.width / 4;
 
             franticSchedule2.height = app.screen.height;
             franticSchedule2.width = newW;
@@ -83,18 +82,17 @@ function slideFranticSchedule() {
     <br/><br/>
     Only those who set their own priorities are free. The rest - a slave to other people grabbing chunks of their calendar for themselves like hunks of meat.
     </p>
-
-    <button class="small" onclick="newScreen(slideFrench)" style="position: absolute; left: 150vw">next</button>
+    <button onClick="newScreen(slideFrench)" style="position: absolute; left: 150vw">next</button>
 
     `
+    // <button class="small" onclick="() => console.log('pls')" style="position: absolute; left: 150vw">next</button>
 
-    // // create small button that says "next"
+    // create small button that says "next"
     // const b = document.createElement("button");
     // b.className = "small";
-    // b.style.position = "relative";
-    // // b.style.left = newW;
-    // // b.style.bottom = "2rem";
-    // b.onClick = () => {
+    // b.style.position = "absolute";
+    // b.style.left = "150vw";
+    // b.onclick = () => {
     //     newScreen(slideFrench)
     // };
     

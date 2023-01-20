@@ -108,8 +108,6 @@ function flyBack() {
     }
 }
 
-const meTableTextStyles = "padding: 2rem; text-align: right; max-width: 50vw; float: right"
-
 function appsA() {
     app.stage.removeChildren();
     setupMeAtDesk();
