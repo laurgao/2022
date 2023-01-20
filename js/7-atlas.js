@@ -161,7 +161,7 @@ function scenePrior() {
         <br/><br/>
         <br/><br/>
 
-        <button style="color: white" id="next-button" onclick="console.log('next')">next</button>
+        <button style="color: white" id="next-button" onclick="newScreen(flyBack)">next</button>
         </div>
     `
 

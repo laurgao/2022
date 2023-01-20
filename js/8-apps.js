@@ -1,11 +1,142 @@
+function flyBack() {
+    const scene = new PIXI.Container();
+    const plane = PIXI.Sprite.from("images/atlas/plane.png");
+    const me = PIXI.Sprite.from("images/sprite/01.png")
+    // set x, y, width, height
+    plane.height = 416 /2;
+    plane.width = 827/2;
+    const y = app.screen.height - plane.height - 80 
+    plane.x += 200
+    plane.y = y;
+
+    me.height = 100;
+    me.width = 50;
+    me.y = app.screen.height - me.height - 20;
+    me.x += plane.width
+    me.width = 50;
+    me.x += 200;
+
+    // function recurseUntilSpriteLoaded() {
+    //     if (franticSchedule.height != 1) {
+            
+    //     } else {
+    //         setTimeout(recurseUntilSpriteLoaded, 100);
+    //     }
+    // }
+    // recurseUntilSpriteLoaded();
+
+
+    scene.x = app.screen.width - plane.width - 400
+    scene.addChild(plane);
+    scene.addChild(me);
+    app.stage.addChild(scene);
+
+    const button = document.createElement("button")
+    button.textContent = "fly home"
+    button.onclick = () => getOnPlane();
+
+    root.innerHTML += `
+    <div style="float: right; ${boringStyles}" id="sub-root">
+        Atlas makes you <a href="https://updately.us/@Laura-Gao-mXDtPhnMp5kCYvjnLUaYVc/2022-09-24-Atlas-er-changed-me-dh1pnKbKPFsEfBUu6Cs9C4">a lot more confident and a little too arrogant</a>. A new appreciation for radical honesty, but you kind of <a href="https://www.lauragao.ca/essays/im-a-metal-monkey">turn into a jerk</a>.
+        <br/><br/>
+        it takes <a href="https://chrislakin.substack.com/p/thoughts-on-and-conjectures-about">finite and infinite games</a>, <a href="https://www.patreon.com/posts/whats-nicky-risk-63289449">functional decision theory</a>, <a href="https://slatestarcodex.com/2014/07/30/meditations-on-moloch/">Meditations on Moloch</a>, a friend "Laura, I don't think I can trust you anymore" and hours-long talks past midnight for you to decide you'll <a href="https://www.lauragao.ca/essays/civilizational-inadequacy">almost-categorically follow honesty and integrity.</a>
+        <br/><br/>
+        For the first time, your peers are like you---wholly nerdy, half rationalist, mildly awkward. It's warm.
+        <br/><br/>
+
+    </div>
+    `
+    const subRoot = document.querySelector("#sub-root")
+    button.style.marginTop = "2rem"
+    button.style.float = "right"
+    button.style.marginRight = "4rem"
+    subRoot.appendChild(button);
+
+    function getOnPlane() {
+        button.onclick = null; // so u cant get on plane twice.
+        const t1 = 500;
+        Tween.get(me, { loop: false })
+        .to({ x: me.x - 250, y: y }, t1, createjs.Ease.easeInOut)
+
+        setTimeout(() => planeMove() ,t1+250)
+    }
+    function planeMove() {
+        const t2 = 1500;
+        Tween.get(scene, {loop: false})
+        .to({x: -200, y: -y}, t2, createjs.Ease.easeInOut)
+        setTimeout(() => land(), t2)
+    }
+    function land() {
+        const t3 = 1500;
+        clearRoot();
+        root.style.opacity = 
+        Tween.get(scene, {loop: false})
+        .to({x: app.screen.width - plane.width, y: -y}, 0, )
+        .to({x: 0, y: 0}, t3)
+
+        // <div class="flex items-center justify-center w-screen h-screen">
+        root.innerHTML = `
+            <div style="position: relative; text-align: center; max-width: 56rem; color: white; margin: 2rem auto; top: 50%; transform: translateY(-50%)" id="containerz">
+                <p style="text-transform: uppercase; font-size: 1rem; opacity: 0.5; margin-bottom: 2rem;">September 2022, Toronto</p>
+                <h1 style="margin-bottom: 2rem;">The Sellout's Dilemma, Round 3</h1>
+                <p style="font-size: 1.5rem; opacity: 0.8"> the final boss: university applications</p>
+            </div>
+        `
+        // </div>
+
+        body.style.transition = "background-color 2s"
+        body.style.backgroundColor = "#292524" // stone 800
+
+        button.onclick = () => {
+            // reset
+            body.style.backgroundColor = "#f5f5f4"
+            setTimeout(() => xyz.removeChild(button), 2000);
+            appsA()
+        }
+        button.style.visibility = "hidden"
+        button.style.color = "white"
+        button.style.float = "" // reset
+        button.textContent = "play"
+        button.className = "small"
+        const xyz = document.getElementById("containerz")
+        xyz.appendChild(button);
+
+        setTimeout(() => landingText(), t3+500)
+    }
+    function landingText() {
+        button.style.visibility = "visible"
+    }
+}
+
 const meTableTextStyles = "padding: 2rem; text-align: right; max-width: 50vw; float: right"
+
+function appsA() {
+    app.stage.removeChildren();
+    setupMeAtDesk();
+    const xyz = document.getElementById("containerz")
+    xyz.style.transition = "top 2s, color 2s, transform 2s"
+    xyz.style.top = "0%";
+    xyz.style.transform = "translateY(0%)";
+    xyz.style.color = "black";
+    
+
+    setTimeout(() => root.innerHTML += `
+    <div style="text-align: center; max-width: 56rem; margin: 0 auto;">
+        <p>
+            It’s September. You give a 15-minute presentation wrapping up your work this internship. You walk out of the Zapata office, knowing that it’ll probably be a few weeks, or months, before you’re back.
+        <br/><br/>
+            It’s September, and you should start writing university application essays. You don’t yet know how you’ll write, just that if you spend 5 hours a day for the next 7 weeks, you’ll probably get somewhere.        
+        </p>
+        <button onclick="appsB()">next</button>
+    </div>
+    `, 2000)
+}
 
 
 function appsB() {
-    setupMeAtDesk();
     root.innerHTML = `<div style="${meTableTextStyles}">
         <p>
-            A journal entry:
+            You write in your journal this day:
             <br/><br/>
             <blockquote>
             Doesn't Atlas have a lower acceptance rate than Stanford? Didn't you think that your life would be complete “and now I can do what I want” when you got the C1, the same way you now feel towards college acceptance? If a uni label would simply be a more intense version of what I already have, would its attainment be enough? would I want the next big thing - "sure MIT is cool and all but a 300k job would make me look even cooler"? 

@@ -1,10 +1,12 @@
 function concl() {
     root.innerHTML = `
     <div style="position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1;">
+    <h4>the end</h4>
     <p
         style="text-align: center;  max-width: 500px;"
-    >It’s January 19th, and you spent your past week making this annual review. You estimate 30 hours spent so far. Holy fuck. You’re behind on all your classes, the English and Linear Algebra and Politics. You win some, you lose some.</p>
-    <br/><br/>
+    >It’s January 19th, and you spent your past week making this annual review. You estimate 30 hours spent so far. Holy fuck. You’re behind on all your classes, the English and Linear Algebra and Politics. You win some, you lose some.
+    <br/>
+    </p>
     <button onclick="goals2023()">keep moving forward</button>
     </div>
 `

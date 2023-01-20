@@ -91,7 +91,6 @@ const newScreen = (newScreenFn) => {
 
 
 function widthError() {
-    console.log("width error")
     const p = document.createElement('p');
     p.textContent = 'This site is not optimized for mobile devices. Please use a desktop or laptop computer.<br/><br/>To complain about this, bother me at gaolauro AT gmail DOT com or make an issue on github.';
     root.appendChild(p);
