@@ -1,4 +1,4 @@
-function concl() {
+function slideConcl() {
     root.innerHTML = `
     <div style="position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1;">
     <h4>the end</h4>
@@ -9,9 +9,8 @@ function concl() {
     </p>
     <button onclick="goals2023()">keep moving forward</button>
     </div>
-`
+`;
     createLauraCircle();
-    
 }
 
 function goals2023() {
@@ -32,7 +31,7 @@ function goals2023() {
 
     </div>
 
-    </div>`
+    </div>`;
     createLauraCircle(450);
 }
 
@@ -57,11 +56,13 @@ function roastMe() {
         </div>
     </div>
 
-    </div>`
+    </div>`;
     createLauraCircle(500);
 }
 
-// 
-{/* <br/><br/>
-Note: I made this website 2 years ago. */}
+//
+{
+    /* <br/><br/>
+Note: I made this website 2 years ago. */
+}
 //

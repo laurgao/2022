@@ -94,17 +94,22 @@ const sceneCode = () => {
     
 }
 
+// In a journal entry that night, you write:
+// <br/><br/>
+
+// <blockquote>
+//     Duolingo 10, or even 30 mins a day is not that bad. But any time over, and def over an hour, becomes a hedonic treadmill for XP. That’s how long it takes for you to lose sight of the bigger picture, and get consumed by desire for shiny object.
+// </blockquote>
+
+//        You try to convince yourself that you really do want to do Fren
+
+{/* <br/><br/> */}
+//
+
 const sceneFr2 = () => {
     root.innerHTML = `
     <div style="${meTableTextStyles}">
-        In a journal entry that night, you write:
-        <br/><br/>
 
-        <blockquote>
-            Duolingo 10, or even 30 mins a day is not that bad. But any time over, and def over an hour, becomes a hedonic treadmill for XP. That’s how long it takes for you to lose sight of the bigger picture, and get consumed by desire for shiny object.
-        </blockquote>
-
-        <br/><br/>
 
         They say immersion is the best way to learn a language. You can't go to France, but you guess you can...
         <br/><br/>

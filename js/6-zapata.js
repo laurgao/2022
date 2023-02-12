@@ -4,7 +4,7 @@
 
 // `, "scenePlane", "next")
 
-const zapataScene = () => {
+const slideZapata = () => {
     root.innerHTML = `
 <div style="max-width: 56rem; margin: 8rem auto; padding: 2rem;">
     It’s 5:30—not enough time to go to Razieh’s house party then home by dusk. You’re about to head in the opposite direction, but
@@ -36,7 +36,7 @@ const zapataScene = () => {
     <br/><br/>
     If your parents were aware that you were leaving virtual class to study quantum computing, you wouldn’t be at Zapata right now…
 
-    <button class="small" onClick="newScreen(scenePlane)" style="margin: 0 auto; display: block;">next</button>
+    <button class="small" onClick="newScreen(slideAtlas)" style="margin: 0 auto; display: block;">next</button>
 </div>
-`
-}
+`;
+};

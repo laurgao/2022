@@ -66,15 +66,33 @@ function slideFranticSchedule() {
     div.className = "h-screen"
     // div.style.top = "50%";
     // div.style.transform = "translateY(-50%)"
+    //  done in the cracks of free time between the unmoving bricks of classes. 
+
+    // A disjointed, unrelated task every day that leaves no time for Scratchpad, your supposed big project. This calendar makes you want to puke. You hate the unmoving bricks up classes that eat away your prime working hours. You're angry how you bend like wet spaghetti to tasks other people want you to do, but then
+
+    // You think about what Harrison, your TKS director said: if you don't have time for xyz, it's because you didn't make time for it. Everyone has the same 24 hours a day. How you spend your time is a reflection of your priorities. 
+
+    // There will always be an excuse. A test tomorrow. A lab next week. A Spinoza book dad wants you to read.
+
+    // If you don't fight for your priorities, no one else will. You resolve that from now on, you won't let things that matters the most to be at the mercy of things that matter less.
+
+    // This calendar makes you want to puke: A disjointed, unrelated task every day. You haven't touched Scratchpad, your supposed big project, for the past 2 weeks. You're angry at the unmoving bricks of classes that eat up all your prime working hours, how you bend like but then
+    // <br/><br/>
+    // You think about what Harrison, your TKS director said: if you don't have time for xyz, it's because you didn't make time for it. Everyone has the same 24 hours a day. How you spend your time is a reflection of your priorities. 
+    // <br/><br/>
+    // There will always be an excuse. A test tomorrow. A lab next week. A Spinoza book dad wants you to read.
+    // <br/><br/>
+    // You resolve that from now on, you won't let things that matters the most to be at the mercy of things that matter less. You'll stop putting off what you want to do for what other people want to do.
     div.innerHTML=`
     <p style="width: 40rem; position: relative; top: 50%; transform: translateY(-50%)">
-        This calendar makes you want to puke: A disjointed, unrelated task every day. Webdev, my supposed main priority, is only done in the cracks of free time between the unmoving bricks of classes. You haven't touched Scratchpad for the past 2 weeks.
-        <br/><br/>
+
+        ${addBr(`A disjointed, unrelated task every day that leaves no time for Scratchpad, your supposed big project. This calendar makes you want to puke. You hate the unmoving bricks up classes that eat away your prime working hours. You're angry how you bend like wet spaghetti to tasks other people want you to do, but then
+
         You think about what Harrison, your TKS director said: if you don't have time for xyz, it's because you didn't make time for it. Everyone has the same 24 hours a day. How you spend your time is a reflection of your priorities. 
-        <br/><br/>
+    
         There will always be an excuse. A test tomorrow. A lab next week. A Spinoza book dad wants you to read.
-        <br/><br/>
-        You resolve that from now on, you won't let things that matters the most to be at the mercy of things that matter less.
+    
+        If you don't fight for your priorities, no one else will. You resolve that from now on, you won't let things that matters the most to be at the mercy of things that matter less.`)}
     </p>
     <p style="width: 40rem; position: absolute; left: 100vw; bottom: 70vh">
     You're reminded of a tweet:

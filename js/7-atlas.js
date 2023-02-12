@@ -1,91 +1,89 @@
-const boringStyles = "max-width: 56rem; margin: 0 auto; padding: 2rem;"
+const boringStyles = "max-width: 56rem; margin: 0 auto; padding: 2rem;";
+
+function slideAtlas() {
+    scenePlane();
+}
 
 function scenePlane() {
     const scene = new PIXI.Container();
     const plane = PIXI.Sprite.from("images/atlas/plane.png");
-    const me = PIXI.Sprite.from("images/sprite/01.png")
+    const me = PIXI.Sprite.from("images/sprite/01.png");
     // set x, y, width, height
-    plane.height = 416 /2;
-    plane.width = 827/2;
-    const y = app.screen.height - plane.height - 80 
-    plane.x += plane.width
-    plane.scale._x = -1
+    plane.height = 416 / 2;
+    plane.width = 827 / 2;
+    const y = app.screen.height - plane.height - 80;
+    plane.x += plane.width;
+    plane.scale._x = -1;
     // now plane is right against left corner
-    plane.x += 200
+    plane.x += 200;
     plane.y = y;
 
     me.height = 100;
     me.width = 50;
     me.y = app.screen.height - me.height - 20;
-    me.x += plane.width
-    me.scale._x = -1
+    me.x += plane.width;
+    me.scale._x = -1;
     me.width = 50;
     me.x += 200;
 
     // function recurseUntilSpriteLoaded() {
     //     if (franticSchedule.height != 1) {
-            
+
     //     } else {
     //         setTimeout(recurseUntilSpriteLoaded, 100);
     //     }
     // }
     // recurseUntilSpriteLoaded();
 
-
-
-
-
     scene.addChild(plane);
     scene.addChild(me);
     app.stage.addChild(scene);
 
-    const button = document.createElement("button")
-    button.textContent = "get on plane"
+    const button = document.createElement("button");
+    button.textContent = "get on plane";
     button.onclick = () => getOnPlane();
 
     root.innerHTML += `
     <div style="${boringStyles}" id="sub-root">On the Friday before you fly out, Michal hugs you before leaving the office.</div>
-    `
-    const subRoot = document.querySelector("#sub-root")
-    button.style.marginTop = "2rem"
+    `;
+    const subRoot = document.querySelector("#sub-root");
+    button.style.marginTop = "2rem";
     subRoot.appendChild(button);
 
     function getOnPlane() {
         const t1 = 500;
-        Tween.get(me, { loop: false })
-        .to({ x: me.x + 150, y: y }, t1, createjs.Ease.easeInOut)
+        Tween.get(me, { loop: false }).to({ x: me.x + 150, y: y }, t1, createjs.Ease.easeInOut);
 
-        setTimeout(() => planeMove() ,t1+250)
+        setTimeout(() => planeMove(), t1 + 250);
     }
     function planeMove() {
         const t2 = 1500;
-        Tween.get(scene, {loop: false})
-        .to({x: app.screen.width, y: -y}, t2, createjs.Ease.easeInOut)
-        setTimeout(() => land(), t2)
+        Tween.get(scene, { loop: false }).to({ x: app.screen.width, y: -y }, t2, createjs.Ease.easeInOut);
+        setTimeout(() => land(), t2);
     }
     function land() {
         const t3 = 1500;
         clearRoot();
-        Tween.get(scene, {loop: false})
-        .to({x: -200, y: -y}, 0, )
-        .to({x: app.screen.width - plane.width - 400, y: 0}, t3)
+        Tween.get(scene, { loop: false })
+            .to({ x: -200, y: -y }, 0)
+            .to({ x: app.screen.width - plane.width - 400, y: 0 }, t3);
 
-        setTimeout(() => landingText(), t3+500)
+        setTimeout(() => landingText(), t3 + 500);
     }
     function landingText() {
-        button.onclick = () => {newScreen(scenePrior)}
-        button.textContent = "next"
-        button.className = "small"
+        button.onclick = () => {
+            newScreen(scenePrior);
+        };
+        button.textContent = "next";
+        button.className = "small";
         root.appendChild(button);
     }
-
-
 }
 
 function scenePrior() {
     // animate fire
     const scene = new PIXI.Container();
-    const w = window.innerWidth > window.innerHeight * 16/9 ? window.innerWidth : window.innerHeight * 16/9
+    const w = window.innerWidth > (window.innerHeight * 16) / 9 ? window.innerWidth : (window.innerHeight * 16) / 9;
 
     let fire = [
         PIXI.Sprite.from("images/atlas/fire/1.png"),
@@ -97,9 +95,9 @@ function scenePrior() {
         PIXI.Sprite.from("images/atlas/fire/7.png"),
         PIXI.Sprite.from("images/atlas/fire/8.png"),
         PIXI.Sprite.from("images/atlas/fire/9.png"),
-    ]
-    for(let i = 0; i<fire.length; i++) {
-        fire[i].height = w * 9/16;
+    ];
+    for (let i = 0; i < fire.length; i++) {
+        fire[i].height = (w * 9) / 16;
         fire[i].width = w;
         // TODO: set x and y.
     }
@@ -107,12 +105,10 @@ function scenePrior() {
     fire.animate();
     app.stage.addChild(scene);
 
-
-
-    const bgImgStyles = `position: fixed; display: block; top: 50%; left: 50%; transform: translate(-50%, -50%)`
+    const bgImgStyles = `position: fixed; display: block; top: 50%; left: 50%; transform: translate(-50%, -50%)`;
     root.innerHTML = `
-        <img src="images/atlas/prior-bg.png" style="z-index: -4; ${bgImgStyles}" width=${w}px height=${w * 9/16}px>
-        <img src="images/atlas/prior-fg.png" style="z-index: -2; ${bgImgStyles}" width=${w}px height=${w * 9/16}px>
+        <img src="images/atlas/prior-bg.png" style="z-index: -4; ${bgImgStyles}" width=${w}px height=${(w * 9) / 16}px>
+        <img src="images/atlas/prior-fg.png" style="z-index: -2; ${bgImgStyles}" width=${w}px height=${(w * 9) / 16}px>
         <div
             id="x"
             style="position: relative; z-index: -3; color: white; max-width: 56rem; margin: 0 auto; text-align: center; transform: translateY(4rem); padding-bottom: 100vh;"
@@ -161,10 +157,9 @@ function scenePrior() {
         <br/><br/>
         <br/><br/>
 
-        <button style="color: white" id="next-button" onclick="newScreen(flyBack)">next</button>
+        <button style="color: white" id="next-button" onclick="newScreen(slideApps)">next</button>
         </div>
-    `
-
+    `;
 
     // go from #canvas -> #x
     // $(document).on("click", ".b", function(){ $(".a").click(); });
@@ -175,16 +170,15 @@ function scenePrior() {
 
     document.addEventListener("scroll", () => {
         const b = document.getElementById("next-button");
-        const x = document.getElementById("x")
-        console.log(b.getBoundingClientRect().top)
-        if(b.getBoundingClientRect().top + b.getBoundingClientRect().height / 2 < window.innerHeight / 2) {
+        const x = document.getElementById("x");
+        console.log(b.getBoundingClientRect().top);
+        if (b.getBoundingClientRect().top + b.getBoundingClientRect().height / 2 < window.innerHeight / 2) {
             x.style.zIndex = 0;
         } else {
             x.style.zIndex = -3;
         }
-    })
+    });
 }
-
 
 // additonal, if we have next slide.
 // atlas makes u more https://updately.us/@Laura-Gao-mXDtPhnMp5kCYvjnLUaYVc/2022-09-24-Atlas-er-changed-me-dh1pnKbKPFsEfBUu6Cs9C4 confident and etc.
