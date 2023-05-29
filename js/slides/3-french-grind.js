@@ -267,8 +267,8 @@ function a() {
 function b() {
 
     root.innerHTML = `
-    <div style="${meTableTextStyles}">
-    It's June 10. At your school bbq, you're walking around the track with Gloria. She tells you about the TOPS Night dress rehearsal after school today, how max attendance is 300 due to covid. A recording will be streamed online afterwards.
+    <div style="max-width: 30vw; margin-left: 20vw;">
+    It's June 10. At your school bbq, you walk around the track with Gloria. She tells you about the TOPS Night dress rehearsal after school today, how max attendance is 300 due to covid. A recording will be streamed online afterwards.
     <br/><br/>
     Ahh. TOPS Night.
     <br/><br/>
@@ -282,23 +282,50 @@ function b() {
     "How are you guys planning to record?"
     <br/><br/>
 
-    "I don't know. JW said something about sticking a camera in the center of the room. Honestly, not the main priority right now."
+    "JW said something about sticking a camera in the center of the room. Honestly, not the main priority right now."
     <br/><br/>
 
-    Yeah, you can imagine. JW and Gloria are busy enough already, trying to get all the performances lit properly. Grade-8-Laura would be proud if you...
+    Yeah, you can imagine. JW and Gloria are busy enough already, getting all the performances lit properly. Grade-8-Laura would be proud if you...
     <br/><br/>
     
     <button onclick="clearRoot();c();">help reinvigorate TOPS Night?</button>
     </div>
 `
-    const bg = PIXI.Sprite.from("images/glowalk/glowalk-bg.png");
-    bg.width = app.screen.width;
-    const people = PIXI.Sprite.from("images/glowalk/glowalk-people.png");
-    people.width = app.screen.width * 287 / 1920;
-    people.x = app.screen.width * 300 / 1920// 1180
+    const bg = setupImg("images/glowalk/glowalk-bg.png")
+    const people = setupImg("images/glowalk/glowalk-people.png", 287 / 405, scale = 287 / 1920)
+    people.x = app.screen.width * 480 / 1920// 1180
     people.y = app.screen.height - 405 - 8
+
     app.stage.addChild(bg);
     app.stage.addChild(people); // 287x405
+
+    const filler = `<div style="height: 500vh; width: 50vw; z-index: -100; position: relative"/>`
+    // relative instead of absolute lets the element get clipped by overflow-x-hidden and hence no horizontal scrollbar
+    root.innerHTML += filler
+
+    const pos = (time) => {
+        // at t=0, x=app.screen.width * 480 / 1920
+        // y = app.screen.height - 405 - 8
+        // and i want the people to move in an upward arc, kind of like an upside down parabola where the vertex is at the top right corner of the screen
+        // so i want the x to move to the right, and the y to move up
+        // write a function of x and y using time
+        const x = app.screen.width * 480 / 1920 + time * 100
+        const y = app.screen.height - 405 - 8 - time * time * 0.1
+        return [x, y]
+    }
+    console.log("hi")
+    // const handleScroll = (e) => {
+    //     console.log(e)
+    //     // the distance from the top of the window feed to pos and then we can use that to move the people
+    //     x, y = pos(e.scrollY)
+    //     people.x = x
+    //     people.y = y
+    // }
+
+    const handleScroll = (e) => {
+        console.log(e)
+    }
+
 
 }
 

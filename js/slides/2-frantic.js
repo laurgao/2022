@@ -6,13 +6,13 @@ function slideFranticSchedule() {
     const franticSchedule2 = PIXI.Sprite.from("images/frantic-schedule-2.png"); franticSchedule2.alpha = 0;
 
     const zoomedSchedule = PIXI.Sprite.from("images/schedule-zoomed-out.png");
-    
+
     // console.log(PIXI.Loader.shared)
     // var x = PIXI.AssetLoader;
-    
+
     const div = document.createElement("div");
     const divBlank = document.createElement("div");
-    divBlank.style.height =  `${1000}vh`;
+    divBlank.style.height = `${1000}vh`;
     divBlank.style.zIndex = -3
     // divBlank.style.position = "absolute" // make it not impact other root content.
 
@@ -31,17 +31,17 @@ function slideFranticSchedule() {
             franticSchedule2.width = newW;
 
             // document.body.style.height = `${franticSchedule.width / app.screen.width}vh`;
-    
+
             scene.addChild(franticSchedule);
             scene.addChild(franticSchedule2);
             scene.addChild(zoomedSchedule);
             // const w = app.screen.width * 0.5625 < app.screen.height ? app.screen.height * 0.5625 : app.screen.width;
             // const h = app.screen.height * 0.5625 < app.screen.width ? app.screen.width * 0.5625 : app.screen.height;
-    
+
             app.stage.addChild(scene);
             div.style.left = `${newW + app.screen.width / 2 - document.documentElement.scrollTop}px`;
 
-            window.addEventListener("scroll", function(e) {
+            window.addEventListener("scroll", function (e) {
                 div.style.left = `${newW + app.screen.width / 2 - document.documentElement.scrollTop}px`;
             })
 
@@ -49,18 +49,18 @@ function slideFranticSchedule() {
             zoomedSchedule.height = app.screen.height;
             zoomedSchedule.width = app.screen.height / 0.5625;
 
-            
+
         } else {
             setTimeout(recurseUntilSpriteLoaded, 100);
         }
     }
     recurseUntilSpriteLoaded();
 
-//     <p style="position: relative; left: 70vw; width: 40rem">
-// Your Laura complex prevents you from doing a task without devoting all of yourself. It hurts you to not. You can't write a physics lab report without using overleaf and learning latex, because that would make it look more like a scientific paper. You can't just write a silly quantum mechanics story without bringing in mathematical formulations of entanglement. You can't make a website for CS class without bringing in the React.js and typescript, using a logarithmic function to adjust for the zoom-in as you scroll down. You think of a reddit comment: "Don't half-ass two things, whole-ass one thing."
-// </p>
+    //     <p style="position: relative; left: 70vw; width: 40rem">
+    // Your Laura complex prevents you from doing a task without devoting all of yourself. It hurts you to not. You can't write a physics lab report without using overleaf and learning latex, because that would make it look more like a scientific paper. You can't just write a silly quantum mechanics story without bringing in mathematical formulations of entanglement. You can't make a website for CS class without bringing in the React.js and typescript, using a logarithmic function to adjust for the zoom-in as you scroll down. You think of a reddit comment: "Don't half-ass two things, whole-ass one thing."
+    // </p>
 
-//
+    //
 
     div.style.position = "fixed";
     div.className = "h-screen"
@@ -83,7 +83,7 @@ function slideFranticSchedule() {
     // There will always be an excuse. A test tomorrow. A lab next week. A Spinoza book dad wants you to read.
     // <br/><br/>
     // You resolve that from now on, you won't let things that matters the most to be at the mercy of things that matter less. You'll stop putting off what you want to do for what other people want to do.
-    div.innerHTML=`
+    div.innerHTML = `
     <p style="width: 40rem; position: relative; top: 50%; transform: translateY(-50%)">
 
         ${addBr(`A disjointed, unrelated task every day that leaves no time for Scratchpad, your supposed big project. This calendar makes you want to puke. You hate the unmoving bricks up classes that eat away your prime working hours. You're angry how you bend like wet spaghetti to tasks other people want you to do, but then
@@ -113,7 +113,7 @@ function slideFranticSchedule() {
     // b.onclick = () => {
     //     newScreen(slideFrench)
     // };
-    
+
     // div.appendChild(b);
     root.appendChild(div);
     root.appendChild(divBlank)
@@ -122,29 +122,56 @@ function slideFranticSchedule() {
     var imageNumber = 1;
     // var prevScrollTop = document.documentElement.scrollTop;
     // move the schedule to the left on scroll
-    window.addEventListener("scroll", function(e) {
+    const handleScroll = (e) => {
         // console.log(document.body.scrollTop) // 0
         // var goingDown = document.documentElement.scrollTop > prevScrollTop;
 
         Tween.get(scene, { loop: false })
-        .to({ x: -document.documentElement.scrollTop + app.screen.width / 4 }, 200, createjs.Ease.linear)
+            .to({ x: -document.documentElement.scrollTop + app.screen.width / 4 }, 200, createjs.Ease.linear)
         // .to({ x: goingDown ? franticSchedule.x - 200 : franticSchedule.x + 200 }, 200, createjs.Ease.linear)
 
         if (imageNumber === 1 && scene.x < app.screen.width / 8) {
             // switch to second image
             Tween.get(franticSchedule2, { loop: false })
-            .to({ alpha: 1 }, 500)
-            
+                .to({ alpha: 1 }, 500)
+
             Tween.get(franticSchedule, { loop: false })
-            .to({ alpha: 0 }, 500)
+                .to({ alpha: 0 }, 500)
             imageNumber = 2;
         } else if (imageNumber === 2 && scene.x > 0) {
             // switch to first image
             Tween.get(franticSchedule2, { loop: false })
-            .to({ alpha: 0 }, 500)
-            
+                .to({ alpha: 0 }, 500)
+
             Tween.get(franticSchedule, { loop: false })
-            .to({ alpha: 1 }, 500)
+                .to({ alpha: 1 }, 500)
+            imageNumber = 1;
+        }
+        // prevScrollTop = document.documentElement.scrollTop;
+    }
+    window.addEventListener("scroll", (e) => {
+        // console.log(document.body.scrollTop) // 0
+        // var goingDown = document.documentElement.scrollTop > prevScrollTop;
+
+        Tween.get(scene, { loop: false })
+            .to({ x: -document.documentElement.scrollTop + app.screen.width / 4 }, 200, createjs.Ease.linear)
+        // .to({ x: goingDown ? franticSchedule.x - 200 : franticSchedule.x + 200 }, 200, createjs.Ease.linear)
+
+        if (imageNumber === 1 && scene.x < app.screen.width / 8) {
+            // switch to second image
+            Tween.get(franticSchedule2, { loop: false })
+                .to({ alpha: 1 }, 500)
+
+            Tween.get(franticSchedule, { loop: false })
+                .to({ alpha: 0 }, 500)
+            imageNumber = 2;
+        } else if (imageNumber === 2 && scene.x > 0) {
+            // switch to first image
+            Tween.get(franticSchedule2, { loop: false })
+                .to({ alpha: 0 }, 500)
+
+            Tween.get(franticSchedule, { loop: false })
+                .to({ alpha: 1 }, 500)
             imageNumber = 1;
         }
         // prevScrollTop = document.documentElement.scrollTop;

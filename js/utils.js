@@ -162,3 +162,15 @@ function insertDilemma(b1Options, b2Options, title = "<h1>Quoi faire? (What do y
 }
 
 const meTableTextStyles = "padding: 2rem; text-align: right; max-width: 50vw; float: right";
+
+const setupImg = (path, wthr = 16 / 9, scale = 1) => {
+    // path: string
+    // wthr: number (width:height ratio)
+    // returns: PIXI.Sprite
+
+    const bg = PIXI.Sprite.from(path);
+    const w = (app.screen.width * wthr < app.screen.height ? app.screen.height * wthr : app.screen.width) * scale;
+    bg.width = w;
+    bg.height = w / wthr;
+    return bg;
+}
