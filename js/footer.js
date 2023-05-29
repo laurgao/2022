@@ -1,10 +1,10 @@
 
 
 const slides = [
-    // {
-    //     fn: slide0,
-    //     name: "Introduction",
-    // },
+    {
+        fn: slide0,
+        name: "Introduction",
+    },
     {
         fn: slide1,
         name: "Web Development",
@@ -18,7 +18,7 @@ const slides = [
         name: "French",
     },
     {
-        fn: slideTN,
+        fn: b,
         name: "TOPS Night",
     },
     {
@@ -38,7 +38,12 @@ const slides = [
         name: "Conclusion",
     },
 ];
+
 function footer() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramSlide = urlParams.get("slide") || 0;
+    updateSlideNumber(paramSlide)
+
     const footer = document.querySelector("#footer");
     // create div
     const div = document.createElement("div");
@@ -50,7 +55,6 @@ function footer() {
     footer.appendChild(div);
 
     for (let i = 0; i < slides.length; i++) {
-        console.log(slides[i]);
         // create a circle for every scene
         const wrapper = document.createElement("div");
         const button = document.createElement("button");
@@ -61,7 +65,7 @@ function footer() {
         button.style.height = "2rem";
         button.style.borderRadius = "50%";
         button.style.border = "1px solid white";
-        button.style.backgroundColor = currentSlide === i ? "#e7e5e4" : "transparent";
+        button.style.backgroundColor = paramSlide === i ? "#e7e5e4" : "transparent";
         button.style.zIndex = 2;
         // circle.style.transition = "background-color 0.15s";
 
@@ -69,7 +73,7 @@ function footer() {
         const popup = document.createElement("div");
         popup.className = "absolute";
         popup.style.padding = "0.5rem 1rem";
-        popup.innerHTML = i + 1 + ". " + slides[i].name;
+        popup.innerHTML = i + ". " + slides[i].name;
         popup.style.backgroundColor = "#292524";
         popup.style.borderRadius = "0.5rem";
         popup.style.bottom = "0";
