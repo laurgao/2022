@@ -3,25 +3,28 @@
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
     <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pixi-filters@5.1.1/dist/browser/pixi-filters.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
         integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <!-- link stylsheet -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="tailwind.css" />
 </head>
 <body>
-    <div id="canvas" style="position: fixed; z-index: -1"></div>
+    <div id="canvas" style="position: fixed; z-index: -1; transition: opacity ease-in 1000ms"></div>
     <!-- <div id="root" style="z-index: 1"></div> -->
     <!--  padding: 2rem -->
-    <div id="root" style="width: 100vw; height: 100vh; z-index: 2"></div>
+    <div id="root" style="width: 100vw; height: calc(100vh - 3rem); z-index: 2; transition: opacity ease-in 1000ms"></div>
     <!-- 1c1917: stone 900 -->
     <!-- 292524: stone 800 -->
     <div
         id="footer"
-        style="position: fixed; width: 100vw; bottom: 0; height: 4rem; background-color: #292524; z-index: 10"
+        style="position: fixed; width: 100vw; bottom: 0; height: 3rem; background-color: #292524; z-index: 10"
         class="flex justify-center align-center"
     ></div>
     <script src="js/utils.js"></script>

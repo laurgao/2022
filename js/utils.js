@@ -25,7 +25,7 @@ const updateSlideNumber = (n) => {
 };
 
 class AS {
-    constructor(spriteArray, parent) {
+    constructor(spriteArray, parent, fps = 10) {
         this.spriteArray = spriteArray;
         this.currentFrame = 0;
         this.totalFrames = spriteArray.length;
@@ -37,6 +37,7 @@ class AS {
             this.gotoAndStop(nextFrame);
         };
         this.animatingId = null;
+        this.fps = fps;
     }
 
     gotoAndStop(i) {
@@ -56,7 +57,7 @@ class AS {
     animate() {
         if (this.animatingId === null) {
             this.animateFn();
-            this.animatingId = setInterval(this.animateFn, 100);
+            this.animatingId = setInterval(this.animateFn, 1000 / this.fps);
         }
     }
 }

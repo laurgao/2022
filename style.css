@@ -1,21 +1,13 @@
-@import "tailwindcss/base";
-
-@import "tailwindcss/components";
-
-@import "tailwindcss/utilities";
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* transition: cubic-bezier(1, 0, 0, 1) 0.5s all; */
+.hover-text-theme:hover {
+    color: #db004f;
+    /* color: #ea005e; */
+    /* windows theme active */
 }
 
 @font-face {
-	font-family: 'FuturaHandwritten';
-	src: url(../fonts/FuturaHandwritten.ttf) format('truetype');
-	font-weight: 400;
+    font-family: 'FuturaHandwritten';
+    src: url(../fonts/FuturaHandwritten.ttf) format('truetype');
+    font-weight: 400;
 }
 
 body {
@@ -71,49 +63,4 @@ blockquote {
     border-left: 4px solid #78716c;
     padding-left: 2rem;
     text-align: left;
-}
-
-/* sorry cant live without */
-.absolute {
-    position: absolute;
-}
-
-.flex {
-    display: flex;
-}
-
-.w-screen {
-    width: 100vw;
-}
-
-.h-screen {
-    height: 100vh;
-}
-
-.justify-center {
-    justify-content: center;
-}
-
-.items-center {
-    align-items: center;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.flex-col {
-    flex-direction: column;
-}
-
-.text-stone-500 {
-    color: #78716c;
-}
-
-a {
-    color: inherit;
-}
-
-a:hover {
-    /* fill in w color. */
 }

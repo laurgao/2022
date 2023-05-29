@@ -1,0 +1,56 @@
+/* sorry cant live without */
+.absolute {
+    position: absolute;
+}
+
+.flex {
+    display: flex;
+}
+
+.w-screen {
+    width: 100vw;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.text-stone-500 {
+    color: #78716c;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.rounded-md {
+    border-radius: 0.5rem;
+}
+
+.hover-bg-white:hover {
+    background-color: white;
+}
+
+.hover-text-theme:hover {
+    color: #db004f;
+}

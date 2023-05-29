@@ -61,20 +61,19 @@ function footer() {
     div.style.display = "flex";
     div.style.justifyContent = "center";
     div.style.alignItems = "center";
-    div.style.gap = "1rem";
+    div.style.gap = "0.75rem";
     // add div to footer
     footer.appendChild(div);
 
     for (let i = 0; i < slides.length; i++) {
-        console.log(slides[i]);
         // create a circle for every scene
         const wrapper = document.createElement("div");
         const button = document.createElement("button");
         wrapper.appendChild(button);
         button.className = "footer";
         wrapper.className = "flex items-center justify-center";
-        button.style.width = "2rem";
-        button.style.height = "2rem";
+        button.style.width = "1.5rem";
+        button.style.height = "1.5rem";
         button.style.borderRadius = "50%";
         button.style.border = "1px solid white";
         button.style.backgroundColor = currentSlide === i ? "#e7e5e4" : "transparent";
@@ -85,6 +84,7 @@ function footer() {
         const popup = document.createElement("div");
         popup.className = "absolute";
         popup.style.padding = "0.5rem 1rem";
+        popup.style.fontSize = "1rem";
         popup.innerHTML = i + 1 + ". " + slides[i].name;
         popup.style.backgroundColor = "#292524";
         popup.style.borderRadius = "0.5rem";
@@ -105,7 +105,7 @@ function footer() {
         popup.appendChild(triangle);
 
         button.onmouseenter = () => {
-            popup.style.transform = "translateY(-200%)";
+            popup.style.transform = "translateY(-4.5rem)";
             popup.style.opacity = "1";
         };
 
@@ -115,6 +115,15 @@ function footer() {
         };
 
         button.onclick = () => {
+            // play sound
+            var sound = new Howl({
+                src: ["sound/button.mp3"],
+                volume: 0.2,
+            });
+
+            sound.play();
+
+            // update slides
             updateSlideNumber(i);
             newScreen(slides[i].fn);
         };
@@ -132,16 +141,13 @@ function initialize() {
             // backgroundColor: 0xf5f5f4, //Just add 0x and then a hex code. stone 100.
             backgroundAlpha: 0,
             width: width,
-            height: window.innerHeight,
+            height: window.innerHeight - 48, // 48 is the height of the footer
         });
 
         canvas.appendChild(app.view);
         footer();
         slide0();
-        // appsI();
-        // scenePlane();
-        // scenePrior();
-        // slideFranticSchedule();
+        // sceneSettings();
     }
 }
 
@@ -172,6 +178,22 @@ function createLauraCircle(radius = 300) {
     }
 }
 
+function scratchPressSound() {
+    const scratch = new Howl({
+        src: ["sound/pencil-scratching.mp3"],
+        // src: ["sound/button-scratchy.mp3"],
+        volume: 1.5,
+    });
+    scratch.play();
+}
+
+const scratchHoverSound = () => {
+    // const scratch = new Howl({
+    //     src: ["sound/pencil-scratching.mp3"],
+    // });
+    // scratch.play();
+};
+
 function slide0() {
     // add button to dom taht says play and then do slide1
     // <p style="opacity: 50%; margin-bottom: 2rem;">By Laura Gao</p>
@@ -184,12 +206,21 @@ function slide0() {
             <p class="text-stone-500" style="margin-bottom: 4rem;">my 2022, in a game &#8226; by laura gao</p>
         
             <button
-                onClick="clearRoot();slide1();"
+                onClick="scratchPressSound();newScreen(slide1);"
+                onmouseenter="scratchHoverSound();"
                 class="small"
                 style="margin-bottom: -2rem;"
             >Play</button>
         </div>
     `;
+
+    // const button = document.querySelector("button");
+    // button.onmouseenter = () => {
+    //     const scratch = new Howl({
+    //         src: ["sound/pencil-scratching.mp3"],
+    //     });
+    //     scratch.play();
+    // };
 
     createLauraCircle(350);
 
@@ -214,9 +245,15 @@ const newScreen = (newScreenFn) => {
     const index = slideFns.indexOf(newScreenFn);
     if (index) updateSlideNumber(index);
 
-    root.innerHTML = "";
-    app.stage.removeChildren();
-    newScreenFn();
+    root.style.opacity = 0;
+    canvas.style.opacity = 0;
+    setTimeout(() => {
+        root.innerHTML = "";
+        app.stage.removeChildren();
+        newScreenFn();
+        root.style.opacity = 1;
+        canvas.style.opacity = 1;
+    }, 1000);
 };
 
 function widthError() {

@@ -1,23 +1,20 @@
-
-
 function slideFrench() {
     // noooo first: u have to be grudging!! u want to er not . u wanna webdev first.
     sceneDilemma();
 
-
     // sceneVideo(sceneSettings);
 }
 
-
 function sceneDilemma() {
     setupMeAtDesk();
-//     <div style="border: 3px black solid; padding: 2rem; text-align: center">
-//     <h2>Code</h2>
-// </div>
-// <div>
-// </div>
+    //     <div style="border: 3px black solid; padding: 2rem; text-align: center">
+    //     <h2>Code</h2>
+    // </div>
+    // <div>
+    // </div>
 
-    const popupStyles = "display: absolute; visibility: hidden; max-width: 20rem; background-color: black; color: white; padding: 2rem; border-radius: 1rem;"
+    const popupStyles =
+        "display: absolute; visibility: hidden; max-width: 20rem; background-color: black; color: white; padding: 2rem; border-radius: 1rem;";
     // <div class="flex justify-center items-center">
 
     root.innerHTML = `
@@ -45,30 +42,27 @@ function sceneDilemma() {
                 </div>
             </div>
         </div>
-    `
-
+    `;
 }
 
 function showFr() {
-    const x = document.querySelector("#fr")
-    x.style.visibility = "visible"
+    const x = document.querySelector("#fr");
+    x.style.visibility = "visible";
 }
 
-
 function hideFr() {
-    const x = document.querySelector("#fr")
-    x.style.visibility = "hidden"
+    const x = document.querySelector("#fr");
+    x.style.visibility = "hidden";
 }
 
 function showCode(e) {
-    const x = document.querySelector("#code")
-    x.style.visibility = "visible"
+    const x = document.querySelector("#code");
+    x.style.visibility = "visible";
 }
 
-
 function hideCode() {
-    const x = document.querySelector("#code")
-    x.style.visibility = "hidden"
+    const x = document.querySelector("#code");
+    x.style.visibility = "hidden";
 }
 
 const sceneCode = () => {
@@ -90,9 +84,8 @@ const sceneCode = () => {
             <br/><br/>
             <button onclick="clearRoot();sceneFr2()">...you decide</button>
         </div>
-    `
-    
-}
+    `;
+};
 
 // In a journal entry that night, you write:
 // <br/><br/>
@@ -103,7 +96,9 @@ const sceneCode = () => {
 
 //        You try to convince yourself that you really do want to do Fren
 
-{/* <br/><br/> */}
+{
+    /* <br/><br/> */
+}
 //
 
 const sceneFr2 = () => {
@@ -115,9 +110,8 @@ const sceneFr2 = () => {
         <br/><br/>
         <button onclick="newScreen(sceneVideo);">...pretend to be French for a few weeks</button>
     </div>
-`
-
-}
+`;
+};
 
 function sceneFr() {
     root.innerHTML = `
@@ -129,9 +123,8 @@ function sceneFr() {
         <br/><br/>
         <button onclick="sceneFr2();">do French</button>
     </div>
-    `
+    `;
 }
-
 
 function sceneVideo() {
     // const scene = new PIXI.Container();
@@ -140,19 +133,17 @@ function sceneVideo() {
     // // Duolingo journal entry
     // // Think like a native speaker.
     // // A native speaker wouldn't be indulging in English physics videos.
-    
+
     // // load yt images.
     // const video1 = PIXI.Sprite.from("images/video-3b1b.png");
     // const video2 = PIXI.Sprite.from("images/video-fr.png");
     // const video3 = PIXI.Sprite.from("images/video-me.png");
 
-    
     // function recurseTillLoaded() {
     //     if (video1.width != 1) {
     //         const m = 2 * 4; // 2rem
     //         // let w = app.screen.width - 2 * m
     //         let w = 900;
-
 
     //         let scaleFactor = w / video1.width;
     //         const h = video1.height * scaleFactor;
@@ -192,8 +183,8 @@ function sceneVideo() {
 
     // 1644/303
     const w = 800; // mvp = not responsive skull
-    const h = w * 303/1644;
-    document.body.style.backgroundColor = "white"
+    const h = (w * 303) / 1644;
+    document.body.style.backgroundColor = "white";
 
     root.innerHTML = `
     <div style="text-align: center; padding: 2rem; margin: 0 auto; justify-content: space-evenly;" class="flex flex-col h-screen items-center">
@@ -207,22 +198,246 @@ function sceneVideo() {
         <img src="images/video-me.png" width=${w} height=${h} />
     </div>
     </div>
-    `
+    `;
 
     // scene.addChild(video1);
     // scene.addChild(video2);
     // scene.addChild(video3);
 
     // app.stage.addChild(scene);
-
 }
 
 function sceneSettings() {
-    document.body.style.backgroundColor = "#f5f5f4" // reset from scene video
+    document.body.style.backgroundColor = "#f5f5f4"; // reset from scene video
     // console.log("hhh")
-    sceneRecap();
+    $("#canvas").css("z-index", 3);
+
+    const scene = new PIXI.Container();
+
+    // desktops
+    const desktop4 = PIXI.Sprite.from("images/fr/desktop/4.png");
+    const b2 = PIXI.Sprite.from("images/fr/desktop/2-button.png");
+    const b3 = PIXI.Sprite.from("images/fr/desktop/3-button.png");
+    const b4 = PIXI.Sprite.from("images/fr/desktop/4-button.png");
+    const b5Fr = PIXI.Sprite.from("images/fr/desktop/5-button-fr.png");
+    const b5En = PIXI.Sprite.from("images/fr/desktop/5-button-en.png");
+    const desktops = {
+        1: {
+            desktop: PIXI.Sprite.from("images/fr/desktop/1.png"),
+            buttons: [PIXI.Sprite.from("images/fr/desktop/1-button.png")],
+        },
+        2: {
+            desktop: PIXI.Sprite.from("images/fr/desktop/2.png"),
+            buttons: [b2], // y displacement: 730
+        },
+        3: {
+            desktop: PIXI.Sprite.from("images/fr/desktop/3.png"),
+            buttons: [b3],
+        },
+        4: { desktop: desktop4, buttons: [b4] },
+        5: { desktop: desktop4, buttons: [b5Fr, b5En] },
+        6: {
+            desktop: PIXI.Sprite.from("images/fr/desktop/6.png"),
+            buttons: [],
+        },
+    };
+
+    function recurseUntilSpriteLoaded() {
+        if (desktops[1].desktop.height != 1) {
+            doShit();
+        } else {
+            setTimeout(recurseUntilSpriteLoaded, 1);
+        }
+    }
+    recurseUntilSpriteLoaded();
+
+    let w;
+    const hh = (app.screen.height * 1920) / app.screen.width; // hypothetical height if width is 1920
+    if (hh > 1080) {
+        // w = app.screen.width;
+        const hw = (app.screen.width * 1080) / app.screen.height;
+        if (hw > 1310) {
+            // shows the language button
+            w = (app.screen.height * 16) / 9; // have desktop fill whole height, and overflow on width
+        } else {
+            w = (app.screen.width * 1920) / 1310; // show buttons and overflow on rest.
+            scene.y = (app.screen.height - (w * 9) / 16) / 2;
+        }
+    } else if (hh > 730 + 62) {
+        // if the settings button is visible
+        w = app.screen.width;
+    } else {
+        const h = (app.screen.height * 1080) / (730 + 62);
+        w = (h * 16) / 9;
+        scene.x = (app.screen.width - w) / 2;
+    }
+
+    const ratio = w / 1920;
+    function doShit() {
+        for (let i = 1; i <= Object.keys(desktops).length; i++) {
+            const d = desktops[i].desktop;
+            d.width = w;
+            console.log(d.height);
+            d.height = 1080 * ratio;
+            for (let j = 0; j < desktops[i].buttons.length; j++) {
+                const b = desktops[i].buttons[j];
+                b.height *= ratio;
+                b.width *= ratio;
+            }
+        }
+        b2.y = 730 * ratio;
+        b3.x = (1920 - 1133) * ratio;
+        b3.y = (1080 - 661) * ratio;
+        b4.x = 429 * ratio;
+        b4.y = 240 * ratio;
+
+        // EN: x: 433, y: 238
+        // FR: x: engx, y: engy+80
+        b5En.x = 433 * ratio;
+        b5En.y = 238 * ratio;
+        b5Fr.x = 433 * ratio;
+        b5Fr.y = 318 * ratio;
+    }
+
+    // }
+    // const h = w * 9 / 16;
+
+    // make each button do the following:
+    for (let i = 1; i < Object.keys(desktops).length; i++) {
+        for (let j = 0; j < desktops[i].buttons.length; j++) {
+            const b = desktops[i].buttons[j];
+            b.interactive = true;
+            b.buttonMode = true;
+            b.on("pointerover", () => {
+                b.filters = [new PIXI.filters.GlowFilter({ distance: 35, outerStrength: 2, color: 0xdb6e96 })];
+            });
+            b.on("pointerout", () => {
+                b.filters = [];
+            });
+
+            if (j === 0) {
+                b.on("pointerdown", () => {
+                    newDesktop(i + 1);
+                });
+            }
+        }
+    }
+
+    function newDesktop(i) {
+        // i: desktop num we are switching to
+        if (i >= desktops.length) return;
+
+        const dur = 500;
+        if (i !== 5) fadeAway(desktops[i - 1].desktop, scene, dur);
+        // remove all buttons
+        for (let j = 0; j < desktops[i - 1].buttons.length; j++) {
+            console.log(i, j);
+            fadeAway(desktops[i - 1].buttons[j], scene, dur);
+        }
+
+        if (i !== 5) fadeIn(desktops[i].desktop, scene, dur);
+        for (let j = desktops[i].buttons.length - 1; j >= 0; j--) {
+            fadeIn(desktops[i].buttons[j], scene, dur);
+        }
+
+        if (i == 6) setTimeout(() => restartMenu(), dur + 1000);
+    }
+
+    function restartMenu() {
+        // play windows ding sound
+
+        $("#canvas").css("z-index", -1); // reset
+        $("#root").append("<div class='w-screen h-screen bg-black opacity-50 absolute'></div>"); // reset
+        // $('<div>Windows has to restart your computer to apply the new language. Continue?</div>')
+        // .append( $('<button>Yes</button>').click(() => {
+        // .appendTo('#root');
+        const div = $("<div><p class='mb-4'>Windows has to restart your computer to apply the new language. Continue?</p></div>").appendTo("#root");
+        div.addClass("w-full relative");
+        div.css({ top: "50%", transform: "translateY(-50%)", padding: "2rem", backgroundColor: "#db004f", color: "white" });
+
+        const buttonContainer = $("<div></div>").appendTo(div);
+        buttonContainer.addClass("flex items-center gap-4");
+        const yes = $("<button>Yes</button>").appendTo(buttonContainer);
+        const no = $("<button>No</button>").appendTo(buttonContainer);
+        yes.addClass("footer hover:bg-white hover-text-theme text-white border-2 border-white px-4 py-2 font-bold transition-colors ml-auto");
+        no.addClass("footer hover:bg-white hover-text-theme text-white border-2 border-white px-4 py-2 font-bold transition-colors");
+        yes.click(() => {
+            // clear root
+            $("#root").empty();
+            scene.removeChild(desktops[6].desktop);
+            restart();
+        });
+        no.click(() => {
+            $("#root").empty();
+            setTimeout(() => restartMenu(), 1000); // give illusion of choice or sth
+        });
+    }
+
+    function restart() {
+        let restartingScreen = Array(90)
+            .fill()
+            .map((el, idx) => {
+                console.log(idx);
+                const thisFrame = PIXI.Sprite.from(`images/fr/desktop/restarting/restarting00${idx + 1 >= 10 ? "" : 0}${idx + 1}.png`);
+                if (app.screen.width > app.screen.height * (16 / 9)) {
+                    // if the screen is wider than 16:9
+                    thisFrame.width = app.screen.width;
+                    thisFrame.height = (app.screen.width * 9) / 16;
+                    thisFrame.y = (app.screen.height - thisFrame.height) / 2;
+                } else {
+                    thisFrame.height = app.screen.height;
+                    thisFrame.width = (app.screen.height * 16) / 9;
+                    thisFrame.x = (app.screen.width - thisFrame.width) / 2;
+                }
+                return thisFrame;
+            });
+        var graphics = new PIXI.Graphics();
+
+        graphics.beginFill(0xdb004f);
+        graphics.drawRect(0, 0, app.screen.width, app.screen.height);
+        graphics.endFill();
+
+        scene.addChild(graphics);
+
+        restartingScreen = new AS(restartingScreen, scene, 24);
+        restartingScreen.animate();
+
+        setTimeout(() => {
+            var blackRect = new PIXI.Graphics();
+
+            blackRect.beginFill(0x27272a);
+            blackRect.drawRect(0, 0, app.screen.width, app.screen.height);
+            blackRect.endFill();
+
+            scene.addChild(blackRect);
+            scene.removeChild(graphics);
+            restartingScreen.hide();
+        }, 10000);
+    }
+
+    scene.addChild(desktops[1].desktop);
+    scene.addChild(desktops[1].buttons[0]);
+    app.stage.addChild(scene);
+
+    // sceneRecap();
 }
 
+const fadeAway = (sprite, container, duration) => {
+    // duration: ms
+    setTimeout(() => {
+        Tween.get(sprite, { loop: false }).to({ alpha: 0 }, duration - 500, createjs.Ease.linear);
+        setTimeout(() => {
+            container.removeChild(sprite);
+        }, duration);
+    }, 500);
+};
+
+const fadeIn = (sprite, container, duration) => {
+    // duration: ms
+    sprite.alpha = 0;
+    container.addChild(sprite);
+    Tween.get(sprite, { loop: false }).to({ alpha: 1 }, duration, createjs.Ease.linear);
+};
 
 function sceneRecap() {
     setupMeAtDesk();
@@ -241,7 +456,7 @@ function sceneRecap() {
         
         <button onclick="clearRoot();a();">keep going</button>
         </div>
-    `
+    `;
 }
 
 function a() {
@@ -255,15 +470,14 @@ function a() {
 
     You watch French videos at least an hour a day. It's easier to stay awake if they're about special relativity or Camus' absurdism. 
 
-    If you can get yourself to C1 level, you've made it in life, you think. This is probably the hardest exam you've ever taken. How many people can get from B2 to C1 in 3 months?`
-    )}
+    If you can get yourself to C1 level, you've made it in life, you think. This is probably the hardest exam you've ever taken. How many people can get from B2 to C1 in 3 months?`)}
     
     <button onclick="clearRoot();b();">push through</button>
     </div>
-`
+`;
 }
 
-// But the video is the artifact that would be remembered. You can produce a recording much better than a single camera. 
+// But the video is the artifact that would be remembered. You can produce a recording much better than a single camera.
 function b() {
     root.innerHTML = `
     <div style="${meTableTextStyles}">
@@ -289,7 +503,7 @@ function b() {
     
     <button onclick="clearRoot();c();">help reinvigorate TOPS Night?</button>
     </div>
-`
+`;
 }
 
 //             <li>You work towards a goal you set 3 years ago, that you'll be professional and cool like previous generations of TOPS students. You'll feel warm inside.</li>
@@ -297,9 +511,9 @@ function b() {
 function c() {
     insertDilemma(
         {
-            "buttonText": "TOPS Night",
-            "nextScene": () => d1(),
-            "descrip": `
+            buttonText: "TOPS Night",
+            nextScene: () => d1(),
+            descrip: `
             <ul>
                 <li>You get to indulge in video editing: the second-most addicting work.</li>
                 <li>You feel pretty confident about C1 already</li>
@@ -307,17 +521,17 @@ function c() {
             `,
         },
         {
-            "buttonText": "French",
-            "nextScene": () => d2(),
-            "descrip": `
+            buttonText: "French",
+            nextScene: () => d2(),
+            descrip: `
             <ul>
                 <li>TOPS Night is the day right before your C1 exam. You need to sleep well before big exams.</li>
                 <li>C'mon mate, one more week. What a shame if you cop out now.</li>
                 <li>Filmmaking is an artistic <i>hobby</i>, which means it doesnt detract from the, you know, <i>important</i> work.</li>
             </ul>
             `,
-        },
-    )
+        }
+    );
 }
 
 function d1() {
@@ -327,7 +541,7 @@ function d1() {
         <br/><br/>
     <button onclick="clearRoot();e();">let's get started</button>
     </div>
-    `
+    `;
 }
 
 function d2() {
@@ -352,10 +566,10 @@ function d2() {
         <button onclick="clearRoot();e();">let's get started</button>
 
     </div>
-    `
+    `;
 }
 
-// You're going to record every performance from 3 camera angles, you decide. 
+// You're going to record every performance from 3 camera angles, you decide.
 function e() {
     root.innerHTML = `
     <div style="${meTableTextStyles}">
@@ -372,5 +586,5 @@ function e() {
         <button onclick="newScreen(slideTN);">welp</button>
 
     </div>
-    `
+    `;
 }
