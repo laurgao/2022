@@ -11,7 +11,7 @@ function slide1() {
     // Your mantra: build tools for your wfs, not wfs around tools.
     createLauraCircle();
     // On school days, you're a puppet dragged from one class to the next. The real day starts when you get home at 4. That's when you can deep work.
-    
+
     div.innerHTML = `
         <div class="flex flex-col items-center justify-center w-screen h-screen text-center" style="z-index: 0;">
             <p style=" max-width: 500px;">
@@ -28,7 +28,7 @@ function slide1() {
     root.appendChild(div);
 }
 
-function writeOn(element, newText, interval=200, delay=0) {
+function writeOn(element, newText, interval = 200, delay = 0) {
     // element.style.transition = "opacity 2000ms ease-in-out";
     // element.style.opacity = "0";
     // element.innerHTML = newText // fades in
@@ -36,7 +36,7 @@ function writeOn(element, newText, interval=200, delay=0) {
     // element.innerHTML = ""
     const words = newText.split(" ");
     // periods in regexpr need to be escaped.
-    const timeTaken = (newText.split(" ").length - newText.split(/\.|,/).length - 1) * interval + (newText.split(/\.|,/).length-1) * 600
+    const timeTaken = (newText.split(" ").length - newText.split(/\.|,/).length - 1) * interval + (newText.split(/\.|,/).length - 1) * 600
     let i = 0;
     // let intervalId = interval(() => addWord(i), 250);
     setTimeout(() => addWord(i), delay)
@@ -108,14 +108,14 @@ function slide2() {
 
 
     // give larm same rotation as rarm
-    larm_origin = {x: .54, y: 0.5};
+    larm_origin = { x: .54, y: 0.5 };
     larm.anchor.set(larm_origin.x, larm_origin.y);
     larm.x = ww * larm_origin.x;
     larm.y = ww * 0.5625 * larm_origin.y;
     Tween.get(larm, { loop: isTyping })
-        .to({ rotation: 0.2}, 200, createjs.Ease.linear)
+        .to({ rotation: 0.2 }, 200, createjs.Ease.linear)
         .to({ rotation: -0 }, 200, createjs.Ease.linear)
-    
+
     scene.addChild(bg);
     scene.addChild(larm);
     scene.addChild(rarm);
@@ -147,7 +147,7 @@ function slide2() {
     knock1.rotation = -0.5235987755982988;
 
     // set position to 0.9, 0.5; rotation to 20 degrees
-    knock2.x = ww * 0.9;  
+    knock2.x = ww * 0.9;
     knock2.y = ww * 0.5625 * 0.5;
     knock2.rotation = 0.3490658503988659;
 
@@ -155,7 +155,7 @@ function slide2() {
     knock3.x = ww * 0.7;
     knock3.y = ww * 0.5625 * 0.5;
     knock3.rotation = -0.17453292519943295;
-    
+
 
     // add to screen
     sceneDoor.addChild(knock1);
@@ -176,29 +176,27 @@ function slide2() {
         knocking.play();
 
         Tween.get(knock1, { loop: false })
-        .to({alpha: 1}, 0)
+            .to({ alpha: 1 }, 0)
 
         Tween.get(knock2, { loop: false })
-        .wait(200)
-        .to({alpha: 1}, 0)
+            .wait(200)
+            .to({ alpha: 1 }, 0)
 
         Tween.get(knock3, { loop: false })
-        .wait(400)
-        .to({alpha: 1}, 0)
+            .wait(400)
+            .to({ alpha: 1 }, 0)
 
         // create b utton saying "open door" html element
         const button = document.createElement('button');
         button.textContent = "open door";
         // on click, call opendoor function   
-        button.onclick = () => {clearRoot();app.stage.removeChild(journalGraph);openDoor();}
+        button.onclick = () => { clearRoot(); app.stage.removeChild(journalGraph); openDoor(); }
         button.style.position = "absolute";
-        button.style.bottom = "2rem";
+        button.style.bottom = "6rem"; // original 2rem + 4rem from footer
         button.style.right = "2rem";
 
         // add button to screen
         root.appendChild(button);
-
-        
     }
 
     function openDoor() {
@@ -215,18 +213,18 @@ function slide2() {
         // make dad slide in with tweenjs
         const t = 1000;
         Tween.get(dad, { loop: false })
-        .to({x: ww}, 0)
-        .to({x: 0}, t, createjs.Ease.linear)
-        
+            .to({ x: ww }, 0)
+            .to({ x: 0 }, t, createjs.Ease.linear)
+
         const button = document.createElement('button');
         button.textContent = "hi, dad!";
         button.style.position = "absolute";
-        button.style.bottom = "2rem";
+        button.style.bottom = "6rem"; // original 2rem + 4rem from footer
         button.style.left = "50%";
         button.style.transition = "opacity 0.5s ease-in-out";
         button.style.opacity = 0;
 
-            
+
         const br = 1000;
         setTimeout(() => {
             button.style.opacity = 1;
@@ -261,7 +259,7 @@ function slide2() {
             dadDiv.style.top = "8rem";
             dadDiv.style.right = "12rem";
             dadDiv.style.width = "36rem";
-            
+
             descrip.style.position = "relative";
             descrip.style.textAlign = "left";
             // descrip.style.top = "50%";
@@ -276,7 +274,7 @@ function slide2() {
             setTimeout(() => writeOn(dadDiv, "Just checking in. Have you been studying French?"), 1000) // 2000
             // TODO: move descrip to the left of me?
             setTimeout(() => writeOn(descrip, "Ah, right. French. If you pass the B2 level exam, you can apply to EPFL. A Swiss university.", 100)
-            , 4000)
+                , 4000)
 
             const anJuLeYe = `You think about what dad told you. 安居乐业. An ancient Chinese proverb. First live in a safe place, then develop a career.
             <br/><br/>
@@ -288,17 +286,14 @@ function slide2() {
             
             You don’t want to live your life running away from worst case scenarios. You think about Sigil in SF building startups.
             <br/><br/>
-            
-            
-            
             `
 
             setTimeout(() => {
                 button.style.visibility = "visible";
                 button.textContent = "I'm programming."
-            }, 10000) 
+            }, 10000)
 
-            
+
             button.onclick = () => {
                 button.style.visibility = "hidden";
                 myDiv.innerHTML = "";
@@ -317,13 +312,13 @@ function slide2() {
                 // setTimeout(() => writeOn(descrip, "<p>you saw on the news a 19 year old guy just got shot in downtown last weekend.</p>"), 4000)
                 // setTimeout(() => descrip.innerHTML +="<p>but you walk these streets and you nvr felt unsafe. you dying in toronto from murder is like 1 in a million.</p>", 5000)
                 // setTimeout(() => descrip.innerHTML +="you don't want to live life avoiding the worst case scenario. you want to chase carrots not run away from sticks. you think about sigil in SF building startups.", 7000)
-                
+
 
                 setTimeout(() => {
                     button.style.visibility = "visible"
                     button.textContent = "I don't want Switzerland"
                 }, x + y + z + 3 * br)
-                
+
                 button.onclick = () => {
                     myDiv.innerHTML = "";
                     dadDiv.innerHTML = "";
@@ -334,69 +329,30 @@ function slide2() {
                     const x = writeOn(myDiv, "I don't know if I want to go to Switzerland?");
                     console.log(x)
                     const y = writeOn(dadDiv, "Where do you want to go?", 200, x + br);
-                    const z = writeOn(myDiv, "<br/><br/>Silicon Valley.", 200, x + y + 2* br);
+                    const z = writeOn(myDiv, "<br/><br/>Silicon Valley.", 200, x + y + 2 * br);
                     const w = writeOn(dadDiv, "<br/><br/>You know that Switzerland is pretty advanced in technology too. They have CERN and the large hadron collider. Internet originated from Switzerland.", 200, x + y + z + 3 * br)
 
-                    // setTimeout(() => {y = writeOn(dadDiv, "Where do you want to go?")}, x)
-
-                    
-                    // root.innerHTML += "<div id='z' style='position: absolute; left: 20rem; top: 12rem; display: block; width: 36rem;'></div>"
-                    // const zz = document.getElementById("z")
-                    // let z;
-                    // let w;
-                    // setTimeout(() => {z = writeOn(myDiv, "<br/><br/>Silicon Valley.")}, x+y);
-                    // setTimeout(() => {w = writeOn(dadDiv, "<br/><br/>You know that Switzerland is pretty advanced in technology too. They have CERN and the large hadron collider. Internet originated from Switzerland.")}, x+y+z);
-                    
-                    // root.innerHTML += "<div id='w' style='position: absolute; right: 12rem; top: 16rem;'></div>"
-                    // const ww = document.getElementById("ww")
-
-                    // setTimeout(() => {
-                    //     // writeOn(descrip, "I'm not against living in Switzerland. I just... don't love it enough to put that much effort?")
-                    //     writeOn(descrip, "Switzerland seems cool, but I don’t love it enough to spend a few months learning a language.")
-                    // }, 2000)
-
                     // change button to "ok i'll consider it", following the format of prev button changes. copilot, do it:
-                    setTimeout(() => button.textContent = "ok i'll consider it", x+y+z+w+4*br)
+                    setTimeout(() => button.textContent = "ok i'll consider it", x + y + z + w + 4 * br)
                     button.onclick = () => {
                         myDiv.innerHTML = "";
                         dadDiv.innerHTML = "";
                         descrip.innerHTML = "";
                         button.textContent = "";
                         Tween.get(dad, { loop: false })
-                        .to({x: ww}, t, createjs.Ease.linear)
+                            .to({ x: ww }, t, createjs.Ease.linear)
 
                         setTimeout(() => {
                             button.textContent = "a few weeks later..."
                             button.onclick = () => newScreen(() => slideFranticSchedule());
                         }, t + br);
-                        
+
                     }
 
-                    
-                    
                 }
             }
         };
 
-        
-        // here we say no to dad.
-        // I mean, tbh, switzerland doesn't sound bad. id rathergo there than canada. but i hate the rest of it: find a safe place to live and then career?
-
-
-        // ofc 
-
-        // this writing is bad because it is not specific and evocative.
-
-
-
-        // button: "hi, dad!"
-        // dad: "hi, laura. so this winter break great chance to work on french la? how is it going?"
-        // button: "bruh im a programmer i don't wanna do french"
-        // dad: "la swizterland best country. the social security. the find good place to live and then study! you have rest of ur career
-        // to do CS. now onc ein lifetime opportunity study la french and go to epfl. "
-        // button: "bruh i don't wanna go to switzerland"
-        // dad: "why not? switzerland has cern u can code in cern. b2 test soon ah!"
-        // noooooooooooo. i wanna do code code code.
     }
 
     // add text as html element
@@ -410,7 +366,7 @@ function slide2() {
     `
 
     var button = document.createElement("button");
-        // <button onclick="headDrop();">I'm tired</button>
+    // <button onclick="headDrop();">I'm tired</button>
     button.onclick = () => headDrop();
     button.textContent = "oops";
     div.appendChild(button);
@@ -425,7 +381,7 @@ function slide2() {
     app.stage.addChild(sceneDoor);
 
     function headDrop() {
-        
+
         console.log("dropped")
         scene.removeChild(me);
         scene.removeChild(larm);
@@ -446,7 +402,7 @@ function slide2() {
         `
         setTimeout(() => {
             knock();
-        }, 20000); // guess how long it takes to read?
+        }, 15000); // guess how long it takes to read?
     }
 
 }

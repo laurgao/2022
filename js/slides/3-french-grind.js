@@ -11,11 +11,11 @@ function slideFrench() {
 
 function sceneDilemma() {
     setupMeAtDesk();
-//     <div style="border: 3px black solid; padding: 2rem; text-align: center">
-//     <h2>Code</h2>
-// </div>
-// <div>
-// </div>
+    //     <div style="border: 3px black solid; padding: 2rem; text-align: center">
+    //     <h2>Code</h2>
+    // </div>
+    // <div>
+    // </div>
 
     const popupStyles = "display: absolute; visibility: hidden; max-width: 20rem; background-color: black; color: white; padding: 2rem; border-radius: 1rem;"
     // <div class="flex justify-center items-center">
@@ -91,7 +91,7 @@ const sceneCode = () => {
             <button onclick="clearRoot();sceneFr2()">...you decide</button>
         </div>
     `
-    
+
 }
 
 // In a journal entry that night, you write:
@@ -103,7 +103,7 @@ const sceneCode = () => {
 
 //        You try to convince yourself that you really do want to do Fren
 
-{/* <br/><br/> */}
+{/* <br/><br/> */ }
 //
 
 const sceneFr2 = () => {
@@ -140,13 +140,13 @@ function sceneVideo() {
     // // Duolingo journal entry
     // // Think like a native speaker.
     // // A native speaker wouldn't be indulging in English physics videos.
-    
+
     // // load yt images.
     // const video1 = PIXI.Sprite.from("images/video-3b1b.png");
     // const video2 = PIXI.Sprite.from("images/video-fr.png");
     // const video3 = PIXI.Sprite.from("images/video-me.png");
 
-    
+
     // function recurseTillLoaded() {
     //     if (video1.width != 1) {
     //         const m = 2 * 4; // 2rem
@@ -192,7 +192,7 @@ function sceneVideo() {
 
     // 1644/303
     const w = 800; // mvp = not responsive skull
-    const h = w * 303/1644;
+    const h = w * 303 / 1644;
     document.body.style.backgroundColor = "white"
 
     root.innerHTML = `
@@ -253,18 +253,19 @@ function a() {
 
     Full immersion, you tell yourself. You write your blog posts and weekly reflections in French. You get a French chemistry textbook, so you can practice French while studying for school. You miss web dev, so you read through all the React hooks documentation in French.
 
-    You watch French videos at least an hour a day. It's easier to stay awake if they're about special relativity or Camus' absurdism. 
+    You watch French videos at least an hour a day. It's easier to stay awake if they're about <a href="https://youtu.be/M86YM6QA4-M">special relativity</a> or <a href="https://www.youtube.com/watch?v=kAm_I8nwjnc" target="_blank">Camus' absurdism</a>. 
 
     If you can get yourself to C1 level, you've made it in life, you think. This is probably the hardest exam you've ever taken. How many people can get from B2 to C1 in 3 months?`
     )}
     
-    <button onclick="clearRoot();b();">push through</button>
+    <button onclick="newScreen(b);">push through</button>
     </div>
 `
 }
 
 // But the video is the artifact that would be remembered. You can produce a recording much better than a single camera. 
 function b() {
+
     root.innerHTML = `
     <div style="${meTableTextStyles}">
     It's June 10. At your school bbq, you're walking around the track with Gloria. She tells you about the TOPS Night dress rehearsal after school today, how max attendance is 300 due to covid. A recording will be streamed online afterwards.
@@ -290,6 +291,15 @@ function b() {
     <button onclick="clearRoot();c();">help reinvigorate TOPS Night?</button>
     </div>
 `
+    const bg = PIXI.Sprite.from("images/glowalk/glowalk-bg.png");
+    bg.width = app.screen.width;
+    const people = PIXI.Sprite.from("images/glowalk/glowalk-people.png");
+    people.width = app.screen.width * 287 / 1920;
+    people.x = app.screen.width * 300 / 1920// 1180
+    people.y = app.screen.height - 405 - 8
+    app.stage.addChild(bg);
+    app.stage.addChild(people); // 287x405
+
 }
 
 //             <li>You work towards a goal you set 3 years ago, that you'll be professional and cool like previous generations of TOPS students. You'll feel warm inside.</li>
