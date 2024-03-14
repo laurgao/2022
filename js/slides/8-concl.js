@@ -6,6 +6,7 @@ function slideConcl() {
         style="text-align: center;  max-width: 500px;"
     >It’s January 19th, and you spent your past week making this annual review. You estimate 30 hours spent so far. Holy fuck. You’re behind on all your classes, the English and Linear Algebra and Politics. You win some, you lose some.
     <br/>
+    <br/>
     </p>
     <button onclick="goals2023()">keep moving forward</button>
     </div>
