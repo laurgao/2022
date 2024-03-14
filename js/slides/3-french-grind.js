@@ -263,13 +263,18 @@ function a() {
 `
 }
 
+
+grassTextStyles = "padding: 2rem; text-align: left; max-width: 30vw; position: relative;";
+grassTextParentStyles = "height: 30vh; overflow-y: scroll; position: fixed;"
+
 // But the video is the artifact that would be remembered. You can produce a recording much better than a single camera. 
 function b() {
-
-    root.innerHTML = `
-    <div style="${meTableTextStyles}">
+    const div = document.createElement("div");
+    div.innerHTML = `
+<div style="${grassTextParentStyles}" id="scrollable-div-parent">
+    <div style="${grassTextStyles}" id="scrollable-div">
     It's June 10. At your school bbq, you're walking around the track with Gloria. She tells you about the TOPS Night dress rehearsal after school today, how max attendance is 300 due to covid. A recording will be streamed online afterwards.
-    <br/><br/>
+    <br/><br/>right
     Ahh. TOPS Night.
     <br/><br/>
 
@@ -290,15 +295,48 @@ function b() {
     
     <button onclick="clearRoot();c();">help reinvigorate TOPS Night?</button>
     </div>
+</div>
 `
+    root.appendChild(div);
+    const scrollableDiv = document.getElementById("scrollable-div")
+    const scrollableDivParent = document.getElementById("scrollable-div-parent")
+
+    const divBlank = document.createElement("div");
+    divBlank.style.height = "calc(" + (scrollableDiv.clientHeight - scrollableDivParent.clientHeight + 40) + "px + 100vh)";
+    divBlank.style.width = "20px";
+    divBlank.style.zIndex = -3
+    root.appendChild(divBlank)
+
+    const firstX = app.screen.width * 300 / 1920
+    const firstY = app.screen.height - 405 - 8
     const bg = PIXI.Sprite.from("images/glowalk/glowalk-bg.png");
     bg.width = app.screen.width;
+    bg.height = app.screen.height; // lol fuckit
     const people = PIXI.Sprite.from("images/glowalk/glowalk-people.png");
     people.width = app.screen.width * 287 / 1920;
-    people.x = app.screen.width * 300 / 1920// 1180
-    people.y = app.screen.height - 405 - 8
+    people.x = firstX // 1180
+    people.y = firstY
     app.stage.addChild(bg);
     app.stage.addChild(people); // 287x405
+
+    const f1 = 1 // factors found experimentally
+    const f2 = 1
+    const b1 = 1
+    const b2 = .2
+    const fn = (t) => Math.pow(f1 * t / app.screen.width - f2 * app.screen.width / 2, 2) + app.screen.height
+    const s = (t) => 1 / (t + b1) + b2
+
+
+    window.addEventListener("scroll", function (e) {
+        // const t = document.documentElement.scrollTop / 1000;
+        // Tween.get(people, { loop: false })
+        //     .to({ x: firstX + t, y: firstY - fn(t), scale: s(t) }, 20, createjs.Ease.linear)
+
+
+        // Set the scrollTop of the div to match the window's scroll position
+        scrollableDiv.style.top = -document.documentElement.scrollTop + "px";
+        // scrollableDiv.scrollTop = document.documentElement.scrollHeight;
+    })
 
 }
 
