@@ -114,6 +114,9 @@ function footer() {
 
 
 const newScreen = (newScreenFn) => {
+    // reset in case we are clicking away from TN slide
+    canvas.style.zIndex = -1;
+
     const slideFns = slides.map((s) => s.fn);
     const index = slideFns.indexOf(newScreenFn);
     if (index) updateSlideNumber(index);

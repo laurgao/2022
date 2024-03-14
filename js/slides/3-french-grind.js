@@ -271,7 +271,7 @@ function next1() {
     insertDilemma(
         {
             "buttonText": "TOPS Night",
-            "nextScene": () => d1(),
+            "nextScene": () => d1(topsText21),
             "descrip": `
         <ul>
             <li>You get to indulge in video editing: the second-most addicting work.</li>
@@ -281,7 +281,7 @@ function next1() {
         },
         {
             "buttonText": "French",
-            "nextScene": () => d2(),
+            "nextScene": () => d1(topsText22),
             "descrip": `
         <ul>
             <li>TOPS Night is the day right before your C1 exam. You need to sleep well before big exams.</li>
@@ -294,21 +294,31 @@ function next1() {
     )
 }
 
-function d1() {
+let scrollableDivOffset = 0;
+
+function d1(newText) {
+    // remove dilemma
     const dil = document.getElementById("dilemma")
-    root.removeChild(dil)
+    if (dil) root.removeChild(dil)
+
+    // set new content
     const scrollableDiv = document.getElementById("scrollable-div")
-    scrollableDiv.innerHTML = topsText21;
+    scrollableDiv.innerHTML = newText;
+
+    // increase capacity of scroll
+    const divBlank = document.getElementById("tops-divblank")
+    const scrollableDivParent = document.getElementById("scrollable-div-parent")
+    if (divBlank.clientHeight > scrollableDivParent.clientHeight) {
+        divBlank.style.height = scrollableDiv.clientHeight + divBlank.clientHeight - scrollableDivParent.clientHeight + "px"
+    }
+
+    // position the scrollable div accordingly 
+    scrollableDiv.style.top = 0;
+    scrollableDivOffset = document.documentElement.scrollTop;
 }
-function d2() {
-    const dil = document.getElementById("dilemma")
-    root.removeChild(dil)
-    const scrollableDiv = document.getElementById("scrollable-div")
-    scrollableDiv.innerHTML = topsText22;
-}
+
 function e() {
-    const scrollableDiv = document.getElementById("scrollable-div")
-    scrollableDiv.innerHTML = topsText3;
+    d1(topsText3)
 }
 
 topsText1 = `It's June 10. At your school bbq, you're walking around the track with Gloria. She tells you about the TOPS Night dress rehearsal after school today, how max attendance is 300 due to covid. A recording will be streamed online afterwards.
@@ -388,9 +398,13 @@ function b() {
     const scrollableDiv = document.getElementById("scrollable-div")
     const scrollableDivParent = document.getElementById("scrollable-div-parent")
 
+    // Must reset this or else fuckery can happen if you click away and then come back.
+    scrollableDiv.style.top = 0;
+    scrollableDivOffset = 0;
+
     const divBlank = document.createElement("div");
-    // divBlank.style.height = "calc(" + (scrollableDiv.clientHeight - scrollableDivParent.clientHeight + 40) + "px + 100vh)";
-    divBlank.style.height = "1000vh"
+    divBlank.style.height = "calc(" + (scrollableDiv.clientHeight - scrollableDivParent.clientHeight + 40) + "px + 100vh)";
+    // divBlank.style.height = "1000vh"
     divBlank.style.width = "20px";
     divBlank.style.zIndex = -3
     divBlank.id = "tops-divblank"
@@ -427,7 +441,7 @@ function b() {
 
 
         // Set the scrollTop of the div to match the window's scroll position
-        scrollableDiv.style.top = -document.documentElement.scrollTop + "px";
+        scrollableDiv.style.top = -document.documentElement.scrollTop + scrollableDivOffset + "px";
         // scrollableDiv.scrollTop = document.documentElement.scrollHeight;
     })
 
