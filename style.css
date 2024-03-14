@@ -116,3 +116,7 @@ a {
 a:hover {
     /* fill in w color. */
 }
+
+.w-full {
+    width: 100%;
+}

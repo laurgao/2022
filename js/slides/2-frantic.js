@@ -41,8 +41,6 @@ function slideFranticSchedule() {
             // scene.addChild(franticSchedule2);
             scene.addChild(zoomedSchedule);
 
-            div.style.left = `${newW + app.screen.width / 2 - document.documentElement.scrollTop}px`;
-
             const text1Obj = new PIXI.Text(text1);
             text1Obj.x = newW + 450 - document.documentElement.scrollTop
             const textStyle = new PIXI.TextStyle({
@@ -74,31 +72,34 @@ function slideFranticSchedule() {
     recurseUntilSpriteLoaded();
 
     div.style.position = "fixed";
-    div.className = "h-screen"
+    div.className = "h-screen w-full flex items-center justify-center"
+    div.style.transition = "opacity 500ms"
+    div.style.opacity = 0
 
-    // <button class="small" onclick="() => console.log('pls')" style="position: absolute; left: 150vw">next</button>
+    // create button that says "next"
+    const b = document.createElement("button");
+    b.innerText = "next"
+    b.onclick = () => {
+        newScreen(slideFrench)
+    };
+    div.appendChild(b);
 
-    // create small button that says "next"
-    // const b = document.createElement("button");
-    // b.className = "small";
-    // b.style.position = "absolute";
-    // b.style.left = "150vw";
-    // b.onclick = () => {
-    //     newScreen(slideFrench)
-    // };
-
-    // div.appendChild(b);
     root.appendChild(div);
     root.appendChild(divBlank);
 
-
-
-    var imageNumber = 1;
+    // var imageNumber = 1;
     // move the schedule to the left on scroll
     window.addEventListener("scroll", function (e) {
+        const threshold = 10 * window.innerHeight - 1.4 * window.innerWidth
 
         Tween.get(scene, { loop: false })
             .to({ x: -document.documentElement.scrollTop + app.screen.width / 4 }, 20, createjs.Ease.linear)
+
+        if (document.documentElement.scrollTop >= threshold) {
+            div.style.opacity = 1
+        } else {
+            div.style.opacity = 0
+        }
 
         // Honestly I'm gonna not switch to the second image because it doesn't rlly add much
         // and it makes it jankier.
