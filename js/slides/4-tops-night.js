@@ -22,6 +22,7 @@ function nextSlide() {
 }
 
 function slideTN() {
+    window.scrollTo(0, 0);
     canvas.style.zIndex = 1;
 
     // html shit
@@ -53,20 +54,20 @@ function slideTN() {
 
         ${framedObjComponent(`<img src="images/topsnight/467mb.png"></img>`, "Exhibit E: editor struggles", 10, 40)}
         ${framedObjComponent(
-            `<a href='https://www.instagram.com/topsnight22/'><img src="images/topsnight/insta.png"></img></a>`,
-            // "Exhibit F: <a href='https://www.instagram.com/topsnight22/'>Lowkey proud of this feed</a>", // links no work bc z-index
-            "Exhibit F: Lowkey proud of this feed. @topsnight22 on instagram",
-            80,
-            10
-        )}
+        `<a href='https://www.instagram.com/topsnight22/'><img src="images/topsnight/insta.png"></img></a>`,
+        // "Exhibit F: <a href='https://www.instagram.com/topsnight22/'>Lowkey proud of this feed</a>", // links no work bc z-index
+        "Exhibit F: Lowkey proud of this feed. @topsnight22 on instagram",
+        80,
+        10
+    )}
         
         ${framedObjComponent(
-            `
+        `
             <iframe style="position: relative; z-index: 2;" width="560" height="315" src="https://www.youtube.com/embed/VHsB_bHXdpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
-            "Exhibit A: TOPS Night 2022 Intro",
-            125,
-            80,
-            `<p>
+        "Exhibit A: TOPS Night 2022 Intro",
+        125,
+        80,
+        `<p>
             While walking home from your editing session, Gloria suggests that
             you replicate the Marvel intro.<br/><br/>
             You download Maxon Cinema 4D, and the software is foreign. How
@@ -82,13 +83,13 @@ function slideTN() {
             Creating this piece was rediscovering the joy of perfectionism, of
             devoting all of your to every frame.
             </p>`,
-            null
-        )}
+        null
+    )}
 
         ${framedObjComponent(`<img src="images/topsnight/chatreplay.png"/>`, "Exhibit B: TOPS Night premiere, Jul 28, 2022", 85, 100)}
 
         ${framedObjComponent(
-            `<p style="width: ${ss}rem;">
+        `<p style="width: ${ss}rem;">
                 Fairview Mall's white lights pierce down. Two hard drives jut out my laptop. On screen, Annie belts, "If you find me, will you know me?" I splice in the closeup. The four of us must look funny, in a food court, surrounded by chit-chatting families.
                 <br/><br/>
                 Gloria, the sound sorceress. Splicing in audio at every microphone crack. She models a three-dimensional "TOPS Night," so I can animate a grand Marvel-style intro, footage replaying on the letters' walls.
@@ -104,10 +105,10 @@ function slideTN() {
                 In the back of the room, three eighth-graders lean forward, a glint in their eyes. The same energy we had 3 years ago watching our first TOPS Night, excited for this new and dazzling high school.
             
             </p>`,
-            "Exhibit C: Artistic interpretation.",
-            5,
-            sss
-        )}
+        "Exhibit C: Artistic interpretation.",
+        5,
+        sss
+    )}
 
         <img src="images/topsnight/keyboard.png" style="position: absolute; top: 50vh; left: 50vw; transform: translate(-50%, -50%); z-index: -2;"/>
         
