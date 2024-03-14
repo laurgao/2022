@@ -5,15 +5,18 @@ function slideAtlas() {
 }
 
 function scenePlane() {
+    let is2 = false; // is on the transition 2nd slide of the same scene.
     const scene = new PIXI.Container();
     const plane = PIXI.Sprite.from("images/atlas/plane.png");
     const me = PIXI.Sprite.from("images/sprite/01.png");
     // set x, y, width, height
-    plane.height = 416 / 2;
-    plane.width = 827 / 2;
+    plane.height = 208; // 416 / 2
+    const planewidth = 410; // 827 / 2
+    plane.width = planewidth;
     const y = app.screen.height - plane.height - 80;
-    plane.x += plane.width;
+    plane.x += planewidth;
     plane.scale._x = -1;
+    plane.width = planewidth;
     // now plane is right against left corner
     plane.x += 200;
     plane.y = y;
@@ -21,19 +24,10 @@ function scenePlane() {
     me.height = 100;
     me.width = 50;
     me.y = app.screen.height - me.height - 20;
-    me.x += plane.width;
+    me.x += planewidth / 2;
     me.scale._x = -1;
     me.width = 50;
     me.x += 200;
-
-    // function recurseUntilSpriteLoaded() {
-    //     if (franticSchedule.height != 1) {
-
-    //     } else {
-    //         setTimeout(recurseUntilSpriteLoaded, 100);
-    //     }
-    // }
-    // recurseUntilSpriteLoaded();
 
     scene.addChild(plane);
     scene.addChild(me);
@@ -62,15 +56,17 @@ function scenePlane() {
         setTimeout(() => land(), t2);
     }
     function land() {
+        is2 = true;
         const t3 = 1500;
         clearRoot();
         Tween.get(scene, { loop: false })
             .to({ x: -200, y: -y }, 0)
-            .to({ x: app.screen.width - plane.width - 400, y: 0 }, t3);
+            .to({ x: app.screen.width - planewidth - 400, y: 0 }, t3);
 
         setTimeout(() => landingText(), t3 + 500);
     }
     function landingText() {
+        if (!is2) return; // without this, it has happened where the "next" text appears prematurely if i click off while timeout is happening and then click back.
         button.onclick = () => {
             newScreen(scenePrior);
         };
