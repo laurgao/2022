@@ -44,7 +44,8 @@ function clearRoot() {
 
 function widthError() {
     const p = document.createElement("p");
-    p.textContent =
+    p.style.padding = "2rem"
+    p.innerHTML =
         "This site is not optimized for mobile devices. Please use a desktop or laptop computer.<br/><br/>To complain about this, bother me at gaolauro AT gmail DOT com or make an issue on github.";
     root.appendChild(p);
 }
