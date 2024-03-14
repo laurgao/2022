@@ -104,12 +104,19 @@ function addBr(text) {
     );
 }
 
-function insertDilemma(b1Options, b2Options, title = "<h1>Quoi faire? (What do you do?)</h1>") {
+function insertDilemma(b1Options, b2Options, title = "<h1>Quoi faire? (What do you do?)</h1>", fixed = false) {
     const popupStyles =
         "display: absolute; visibility: hidden; max-width: 20rem; background-color: black; color: white; padding: 2rem; border-radius: 1rem;";
     //     // <div class="flex justify-center items-center">
 
-    root.innerHTML += `
+    const div = document.createElement("div");
+    div.id = "dilemma"
+    if (fixed) {
+        div.style.position = "fixed";
+        div.style.top = "0";
+        div.style.width = "100%";
+    }
+    div.innerHTML += `
         <div style="padding: 2rem; text-align: center">
             ${title}
             <div class="flex justify-center items-center" id="button-container"></div>
@@ -123,6 +130,7 @@ function insertDilemma(b1Options, b2Options, title = "<h1>Quoi faire? (What do y
             </div>
         </div>
     `;
+    root.appendChild(div)
 
     const b1 = document.createElement("button");
     const b2 = document.createElement("button");

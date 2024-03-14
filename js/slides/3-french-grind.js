@@ -264,8 +264,115 @@ function a() {
 }
 
 
+
+function next1() {
+    const scrollableDiv = document.getElementById("scrollable-div")
+    scrollableDiv.innerHTML = ""
+    insertDilemma(
+        {
+            "buttonText": "TOPS Night",
+            "nextScene": () => d1(),
+            "descrip": `
+        <ul>
+            <li>You get to indulge in video editing: the second-most addicting work.</li>
+            <li>You feel pretty confident about C1 already</li>
+        </ul>
+        `,
+        },
+        {
+            "buttonText": "French",
+            "nextScene": () => d2(),
+            "descrip": `
+        <ul>
+            <li>TOPS Night is the day right before your C1 exam. You need to sleep well before big exams.</li>
+            <li>C'mon mate, one more week. What a shame if you cop out now.</li>
+            <li>Filmmaking is an artistic <i>hobby</i>, which means it doesnt detract from the, you know, <i>important</i> work.</li>
+        </ul>
+        `,
+        },
+        "<h1>Quoi faire? (What do you do?)</h1>", true
+    )
+}
+
+function d1() {
+    const dil = document.getElementById("dilemma")
+    root.removeChild(dil)
+    const scrollableDiv = document.getElementById("scrollable-div")
+    scrollableDiv.innerHTML = topsText21;
+}
+function d2() {
+    const dil = document.getElementById("dilemma")
+    root.removeChild(dil)
+    const scrollableDiv = document.getElementById("scrollable-div")
+    scrollableDiv.innerHTML = topsText22;
+}
+function e() {
+    const scrollableDiv = document.getElementById("scrollable-div")
+    scrollableDiv.innerHTML = topsText3;
+}
+
+topsText1 = `It's June 10. At your school bbq, you're walking around the track with Gloria. She tells you about the TOPS Night dress rehearsal after school today, how max attendance is 300 due to covid. A recording will be streamed online afterwards.
+<br/><br/>right
+Ahh. TOPS Night.
+<br/><br/>
+
+You think about when you were in Grade 8. If you stretch your back straight, you can peak over the sea of heads. The curtain opens, the music rolls. In perfect sync, students sit on the desk, and swing their right legs over their left.
+<br/><br/>
+
+You walk home that night in awe of the production quality, with renewed excitement to join the charming student body.
+<br/><br/>
+
+"How are you guys planning to record?"
+<br/><br/>
+
+"I don't know. JW said something about sticking a camera in the center of the room. Honestly, not the main priority right now."
+<br/><br/>
+
+Yeah, you can imagine. JW and Gloria are busy enough already, trying to get all the performances lit properly. Grade-8-Laura would be proud if you...
+<br/><br/>
+
+<button onclick="next1();">help reinvigorate TOPS Night?</button>`
+
+topsText21 = `Yea, you've been doing this "have 1 priority at a time" thing for the past few months. Multitasking, too, is a skill.
+<br/><br/>
+<button onclick="e();">let's get started</button>`
+
+topsText22 = `${addBr(`You go home that night and listen to <i>Travailler en Profondeur</i>, the French audiobook of Cal Newport's <i>Deep Work</i>. Your daily routine, except today
+    
+as you try to doze off, your mind drifts back. You were so excited to go to TOPS because you thought you can be part of a student body that could create such professional production. You watched last year's livestream dreaming about how you'd edit it, when it was your grade's turn. You wouldn't be able to live with yourself if you didn't try.
+
+Gloria told you how she basically just decided to take charge of stage operations. You think of a quote:
+`)}
+
+<blockquote>
+There are two kinds of people, those who do the work and those who take the credit. Try to be in the first group; there is less competition there.
+<br/><br/>
+⁠—Indira Gandhi
+</blockquote>
+
+${addBr(`
+You decide that you'll just take charge of the filming and production of the recording.`)}
+
+<button onclick="e();">let's get started</button>
+
+</div>`
+
+topsText3 = `${addBr(`
+A full Saturday editing the graduation video, motion tweening the text, planning the camera angles. A breath of fresh air after stepping off a crowded train. It's been a while.
+
+A few excited spiels about cutting between closeup and wide shots as the music flows. You get a couple of friends to man the 4 cameras.
+
+Some classmates went out to get you bubble tea a couple hours ago, but it sits untouched in the back room. You check your watch, and you realize you've been continuously standing in tight black boots for 5 hours.
+
+You get home that night at 11pm. There goes your pre-exam restful sleep.
+`)}
+
+<button onclick="newScreen(slideTN);">welp</button>
+`
+
 grassTextStyles = "padding: 2rem; text-align: left; max-width: 30vw; position: relative;";
 grassTextParentStyles = "height: 30vh; overflow-y: scroll; position: fixed;"
+
 
 // But the video is the artifact that would be remembered. You can produce a recording much better than a single camera. 
 function b() {
@@ -273,27 +380,7 @@ function b() {
     div.innerHTML = `
 <div style="${grassTextParentStyles}" id="scrollable-div-parent" class="remove-scrollbar">
     <div style="${grassTextStyles}" id="scrollable-div">
-    It's June 10. At your school bbq, you're walking around the track with Gloria. She tells you about the TOPS Night dress rehearsal after school today, how max attendance is 300 due to covid. A recording will be streamed online afterwards.
-    <br/><br/>right
-    Ahh. TOPS Night.
-    <br/><br/>
-
-    You think about when you were in Grade 8. If you stretch your back straight, you can peak over the sea of heads. The curtain opens, the music rolls. In perfect sync, students sit on the desk, and swing their right legs over their left.
-    <br/><br/>
-
-    You walk home that night in awe of the production quality, with renewed excitement to join the charming student body.
-    <br/><br/>
-
-    "How are you guys planning to record?"
-    <br/><br/>
-
-    "I don't know. JW said something about sticking a camera in the center of the room. Honestly, not the main priority right now."
-    <br/><br/>
-
-    Yeah, you can imagine. JW and Gloria are busy enough already, trying to get all the performances lit properly. Grade-8-Laura would be proud if you...
-    <br/><br/>
-    
-    <button onclick="clearRoot();c();">help reinvigorate TOPS Night?</button>
+        ${topsText1}
     </div>
 </div>
 `
@@ -302,9 +389,11 @@ function b() {
     const scrollableDivParent = document.getElementById("scrollable-div-parent")
 
     const divBlank = document.createElement("div");
-    divBlank.style.height = "calc(" + (scrollableDiv.clientHeight - scrollableDivParent.clientHeight + 40) + "px + 100vh)";
+    // divBlank.style.height = "calc(" + (scrollableDiv.clientHeight - scrollableDivParent.clientHeight + 40) + "px + 100vh)";
+    divBlank.style.height = "1000vh"
     divBlank.style.width = "20px";
     divBlank.style.zIndex = -3
+    divBlank.id = "tops-divblank"
     root.appendChild(divBlank)
 
     const firstX = app.screen.width * 300 / 1920
@@ -319,18 +408,22 @@ function b() {
     app.stage.addChild(bg);
     app.stage.addChild(people); // 287x405
 
-    const f1 = 1 // factors found experimentally
-    const f2 = 1
+    // const f1 = .7 // factors found experimentally
+    // const f2 = 1.8
     const b1 = 1
     const b2 = .2
-    const fn = (t) => Math.pow(f1 * t / app.screen.width - f2 * app.screen.width / 2, 2) + app.screen.height
-    const s = (t) => 1 / (t + b1) + b2
+    // const sqrtw = Math.pow(app.screen.height, .5)
+    // const fn = (t) => Math.pow(f1 * t / sqrtw - f2 * sqrtw / 2, 2) + app.screen.height
+    // const fn = (t) => Math.pow(t, 2)
+    const fn = (t) => 1.5 * t
+    const s = (t) => (1 / (t + b1) + b2) / (1 + b2)
 
 
     window.addEventListener("scroll", function (e) {
-        // const t = document.documentElement.scrollTop / 1000;
-        // Tween.get(people, { loop: false })
-        //     .to({ x: firstX + t, y: firstY - fn(t), scale: s(t) }, 20, createjs.Ease.linear)
+        const t = document.documentElement.scrollTop / 6;
+        console.log(t, fn(t), s(t))
+        Tween.get(people, { loop: false })
+            .to({ x: firstX + t, y: firstY - fn(t) }, 20, createjs.Ease.linear)
 
 
         // Set the scrollTop of the div to match the window's scroll position
@@ -341,84 +434,3 @@ function b() {
 }
 
 //             <li>You work towards a goal you set 3 years ago, that you'll be professional and cool like previous generations of TOPS students. You'll feel warm inside.</li>
-
-function c() {
-    insertDilemma(
-        {
-            "buttonText": "TOPS Night",
-            "nextScene": () => d1(),
-            "descrip": `
-            <ul>
-                <li>You get to indulge in video editing: the second-most addicting work.</li>
-                <li>You feel pretty confident about C1 already</li>
-            </ul>
-            `,
-        },
-        {
-            "buttonText": "French",
-            "nextScene": () => d2(),
-            "descrip": `
-            <ul>
-                <li>TOPS Night is the day right before your C1 exam. You need to sleep well before big exams.</li>
-                <li>C'mon mate, one more week. What a shame if you cop out now.</li>
-                <li>Filmmaking is an artistic <i>hobby</i>, which means it doesnt detract from the, you know, <i>important</i> work.</li>
-            </ul>
-            `,
-        },
-    )
-}
-
-function d1() {
-    root.innerHTML = `
-    <div style="${meTableTextStyles}">
-        Yea, you've been doing this "have 1 priority at a time" thing for the past few months. Multitasking, too, is a skill.
-        <br/><br/>
-    <button onclick="clearRoot();e();">let's get started</button>
-    </div>
-    `
-}
-
-function d2() {
-    root.innerHTML = `
-    <div style="${meTableTextStyles}">
-        ${addBr(`You go home that night and listen to <i>Travailler en Profondeur</i>, the French audiobook of Cal Newport's <i>Deep Work</i>. Your daily routine, except today
-        
-        as you try to doze off, your mind drifts back. You were so excited to go to TOPS because you thought you can be part of a student body that could create such professional production. You watched last year's livestream dreaming about how you'd edit it, when it was your grade's turn. You wouldn't be able to live with yourself if you didn't try.
-
-        Gloria told you how she basically just decided to take charge of stage operations. You think of a quote:
-        `)}
-
-        <blockquote>
-        There are two kinds of people, those who do the work and those who take the credit. Try to be in the first group; there is less competition there.
-        <br/><br/>
-        ⁠—Indira Gandhi
-        </blockquote>
-
-        ${addBr(`
-        You decide that you'll just take charge of the filming and production of the recording.`)}
-
-        <button onclick="clearRoot();e();">let's get started</button>
-
-    </div>
-    `
-}
-
-// You're going to record every performance from 3 camera angles, you decide. 
-function e() {
-    root.innerHTML = `
-    <div style="${meTableTextStyles}">
-        ${addBr(`
-        A full Saturday editing the graduation video, motion tweening the text, planning the camera angles. A breath of fresh air after stepping off a crowded train. It's been a while.
-
-        A few excited spiels about cutting between closeup and wide shots as the music flows. You get a couple of friends to man the 4 cameras.
-        
-        Some classmates went out to get you bubble tea a couple hours ago, but it sits untouched in the back room. You check your watch, and you realize you've been continuously standing in tight black boots for 5 hours.
-
-        You get home that night at 11pm. There goes your pre-exam restful sleep.
-        `)}
-
-        <button onclick="newScreen(slideTN);">welp</button>
-
-    </div>
-    `
-}
