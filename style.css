@@ -4,7 +4,6 @@
 
 @import "tailwindcss/utilities";
 
-
 * {
     margin: 0;
     padding: 0;
@@ -13,13 +12,13 @@
 }
 
 @font-face {
-	font-family: 'FuturaHandwritten';
-	src: url(../fonts/FuturaHandwritten.ttf) format('truetype');
-	font-weight: 400;
+    font-family: "FuturaHandwritten";
+    src: url(/2022/fonts/FuturaHandwritten.ttf) format("truetype");
+    font-weight: 400;
 }
 
 body {
-    font-family: 'FuturaHandwritten', sans-serif;
+    font-family: "FuturaHandwritten", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 1.25rem;
