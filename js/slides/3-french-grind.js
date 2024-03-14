@@ -271,7 +271,7 @@ grassTextParentStyles = "height: 30vh; overflow-y: scroll; position: fixed;"
 function b() {
     const div = document.createElement("div");
     div.innerHTML = `
-<div style="${grassTextParentStyles}" id="scrollable-div-parent">
+<div style="${grassTextParentStyles}" id="scrollable-div-parent" class="remove-scrollbar">
     <div style="${grassTextStyles}" id="scrollable-div">
     It's June 10. At your school bbq, you're walking around the track with Gloria. She tells you about the TOPS Night dress rehearsal after school today, how max attendance is 300 due to covid. A recording will be streamed online afterwards.
     <br/><br/>right
