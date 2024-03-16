@@ -41,8 +41,10 @@ const slides = [
 
 function footer() {
     const urlParams = new URLSearchParams(window.location.search);
-    const paramSlide = urlParams.get("slide") || 0;
-    updateSlideNumber(paramSlide)
+    let paramSlide = parseInt(urlParams.get("slide")) || 0; // if param != int then parseInt(param) = NaN and the or will make it 0.
+    if (paramSlide > slides.length || paramSlide < 0) {
+        paramSlide = 0;
+    }
 
     const footer = document.querySelector("#footer");
     // create div
@@ -110,6 +112,7 @@ function footer() {
         wrapper.appendChild(popup);
         div.appendChild(wrapper);
     }
+    updateSlideNumber(paramSlide)
 }
 
 
