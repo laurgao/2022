@@ -35,8 +35,8 @@ const slideZapata = () => {
     but that’s ok… maybe? Being friends with people like Michał and PJ will probably do more for  your future success than studying, anyway. Your dad doesn’t understand the importance of knowing people. Your dad, who scoffed when you said one of your goals for going to HYPSM is to meet people. A goal that is an axiom in the startupy world.
     <br/><br/>
     If your parents were aware that you were leaving virtual class to study quantum computing, you wouldn’t be at Zapata right now…
-
-    <button class="small" onClick="newScreen(slideAtlas)" style="margin: 0 auto; display: block;">next</button>
+    <br/><br/>
+    <button class="small" onClick="newScreen(slideAtlas)" style="margin: 8rem auto 0 auto; display: block;">next</button>
 </div>
 `;
 };
